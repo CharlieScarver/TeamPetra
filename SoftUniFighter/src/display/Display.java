@@ -1,8 +1,7 @@
-package Display;
+package display;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 
 // Drawing the display here.
 public class Display extends Canvas{

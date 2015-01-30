@@ -1,6 +1,10 @@
-package Game;
+package game;
 
-import Display.*;
+import display.*;
+import game.gameObjects.Player;
+import gfx.Assets;
+import state.State;
+import state.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -17,6 +21,10 @@ public class Game implements Runnable {
 
     private BufferStrategy bs;
     private Graphics g;
+    private State currentState;
+
+    private Player player1;
+    private Player player2;
 
     public Game(String title, int width, int height) {
         this.title = title;
@@ -27,7 +35,10 @@ public class Game implements Runnable {
 
     public void init() {
         this.display = new Display(this.title, this.width, this.height);
-
+        Assets.init();
+        currentState = StateManager.getCurrentState();
+        // Initialize players here.
+        //this.player1 = new Player()
     }
 
     public synchronized void start() {
@@ -57,16 +68,33 @@ public class Game implements Runnable {
     public void run() {
         this.init();
 
+        int fps = 30;
+        double timePerTick = 1000000000.0 / fps;
+        double deltaTime = 0;
+        long lastTimeTicked = System.nanoTime();
+        long now;
+
         while (isRunning) {
-            this.tick();
-            this.render();
+            now = System.nanoTime();
+            deltaTime += (now - lastTimeTicked) / timePerTick;
+            lastTimeTicked = now;
+
+            if (deltaTime >= 1) {
+                this.update();
+                this.render();
+                deltaTime--;
+            }
         }
 
         stop();
     }
-
-    private void tick() {
-
+// Can also be tick(), logic goes here.
+    private void update() {
+        this.player1.update();
+        this.player2.update();
+        if (this.player1.intersects(player2.getBoundingBox())) {
+            //intersection logic - is in attacking stance, what happens, reduce health, etc.
+        }
     }
 // All drawing goes here.
     private void render() {
@@ -78,6 +106,10 @@ public class Game implements Runnable {
         }
 
         g = this.bs.getDrawGraphics();
+
+        //Draw here.
+        this.player1.render(g);
+        this.player2.render(g);
 
         this.bs.show();
         this.g.dispose();
