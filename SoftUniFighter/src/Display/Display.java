@@ -2,6 +2,7 @@ package Display;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 // Drawing the display here.
 public class Display extends Canvas{
@@ -20,6 +21,10 @@ public class Display extends Canvas{
         createFrame();
     }
 
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
+
     private void createFrame() {
         this.frame = new JFrame();
         this.frame.setTitle(this.title);
@@ -30,8 +35,10 @@ public class Display extends Canvas{
         this.frame.setFocusable(true);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
         this.canvas = new Canvas();
         this.canvas.setSize(new Dimension(this.width, this.height));
-
+        this.frame.add(canvas);
+        this.frame.pack();
     }
 }

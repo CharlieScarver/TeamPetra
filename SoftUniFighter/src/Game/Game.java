@@ -2,6 +2,9 @@ package Game;
 
 import Display.*;
 
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
 // All of the game's logic goes here.
 public class Game implements Runnable {
     private String title;
@@ -10,6 +13,10 @@ public class Game implements Runnable {
 
     private Thread thread;
     private  boolean isRunning;
+    private Display display;
+
+    private BufferStrategy bs;
+    private Graphics g;
 
     public Game(String title, int width, int height) {
         this.title = title;
@@ -19,7 +26,8 @@ public class Game implements Runnable {
     }
 
     public void init() {
-        new Display(this.title, this.width, this.height);
+        this.display = new Display(this.title, this.width, this.height);
+
     }
 
     public synchronized void start() {
@@ -60,8 +68,18 @@ public class Game implements Runnable {
     private void tick() {
 
     }
-
+// All drawing goes here.
     private void render() {
+        this.bs = this.display.getCanvas().getBufferStrategy();
 
+        if (this.bs == null) {
+            display.getCanvas().createBufferStrategy(2);
+            return;
+        }
+
+        g = this.bs.getDrawGraphics();
+
+        this.bs.show();
+        this.g.dispose();
     }
 }
