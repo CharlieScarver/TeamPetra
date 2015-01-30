@@ -91,11 +91,11 @@ public class Game implements Runnable {
     }
 // Can also be tick(), logic goes here.
     private void update() {
-        this.player1.update();
-        this.player2.update();
-        if (this.player1.intersects(player2.getBoundingBox())) {
-            //intersection logic - is in attacking stance, what happens, reduce health, etc.
-        }
+//        this.player1.update();
+//        this.player2.update();
+//        if (this.player1.intersects(player2.getBoundingBox())) {
+//            //intersection logic - is in attacking stance, what happens, reduce health, etc.
+//        }
     }
 // All drawing goes here.
     private void render() {
@@ -108,9 +108,10 @@ public class Game implements Runnable {
 
         g = this.bs.getDrawGraphics();
 
+        g.drawImage(Assets.background, 0, 0, null);
         //Draw here.
-        this.player1.render(g);
-        this.player2.render(g);
+//        this.player1.render(g);
+//        this.player2.render(g);
 
         this.bs.show();
         this.g.dispose();
