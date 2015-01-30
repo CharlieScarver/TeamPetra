@@ -32,7 +32,7 @@ public class Player {
         movingUp = false;
     }
     public void update() {
-        
+
     }
 
     public void render(Graphics g) {
