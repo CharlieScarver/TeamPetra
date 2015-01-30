@@ -1,6 +1,7 @@
 package gfx;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Assets {
     private final int width = 300;
@@ -9,6 +10,7 @@ public class Assets {
     public static BufferedImage background,player1, player2;
 
     public static void init() {
-        background = ImageLoader.loadImage("SoftUniFighter/images/Arena1MortalKombat.png");
+        ///home/ksevery/TeamworkJava/TeamPetra/SoftUniFighter/src/gfx/ImageLoader.java
+        background = ImageLoader.loadImage("SoftUniFighter"+ File.separator + "images" + File.separator + "Arena1MortalKombat.png");
     }
 }
