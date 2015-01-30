@@ -11,6 +11,7 @@ public class Assets {
 
     public static void init() {
         ///home/ksevery/TeamworkJava/TeamPetra/SoftUniFighter/src/gfx/ImageLoader.java
-        background = ImageLoader.loadImage("SoftUniFighter"+ File.separator + "images" + File.separator + "Arena1MortalKombat.png");
+        background = ImageLoader.loadImage("images" + File.separator + "Arena1024.jpg");
+        System.out.println(new File(".").getAbsolutePath());
     }
 }

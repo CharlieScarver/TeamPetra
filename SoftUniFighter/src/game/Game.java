@@ -3,11 +3,13 @@ package game;
 import display.*;
 import game.gameObjects.Player;
 import gfx.Assets;
+import gfx.ImageLoader;
 import state.State;
 import state.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.File;
 
 // All of the game's logic goes here.
 public class Game implements Runnable {
@@ -23,8 +25,8 @@ public class Game implements Runnable {
     private Graphics g;
     private State currentState;
 
-    private Player player1;
-    private Player player2;
+    private static Player player1;
+    private static Player player2;
 
     public Game(String title, int width, int height) {
         this.title = title;
@@ -38,8 +40,13 @@ public class Game implements Runnable {
         this.display.addKeyListener(new InputHandler());
         Assets.init();
         currentState = StateManager.getCurrentState();
+
         // Initialize players here.
-        //this.player1 = new Player()
+        this.player1 = new Player(50, 250);
+        this.player1.setPlayerImage(ImageLoader.loadImage("images" + File.separator + "NakovHeadDefaultFighter1PNG.png"));
+        this.player2 = new Player(648, 330);
+        this.player2.setPlayerImage(ImageLoader.loadImage("images" + File.separator + "ProffHeadDefaultFighter2MirroredPNG.png"));
+
     }
 
     public synchronized void start() {
@@ -91,8 +98,8 @@ public class Game implements Runnable {
     }
 // Can also be tick(), logic goes here.
     private void update() {
-//        this.player1.update();
-//        this.player2.update();
+        this.player1.update();
+        this.player2.update();
 //        if (this.player1.intersects(player2.getBoundingBox())) {
 //            //intersection logic - is in attacking stance, what happens, reduce health, etc.
 //        }
@@ -110,10 +117,19 @@ public class Game implements Runnable {
 
         g.drawImage(Assets.background, 0, 0, null);
         //Draw here.
-//        this.player1.render(g);
-//        this.player2.render(g);
+        this.player1.render(g);
+        this.player2.render(g);
 
         this.bs.show();
         this.g.dispose();
     }
+
+    public static Player getPlayer1() {
+        return player1;
+    }
+
+    public static Player getPlayer2() {
+        return player2;
+    }
+
 }

@@ -1,5 +1,6 @@
 package game.gameObjects;
 
+import javax.xml.transform.sax.SAXSource;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -10,6 +11,9 @@ public class Player {
     private int health;
     private int velocity;
 
+    private static final int SPEED = 10;
+    private int velX;
+
     public static boolean movingUp;
     public static boolean movingDown;
     public static boolean movingLeft;
@@ -18,10 +22,11 @@ public class Player {
     private BufferedImage playerImage;
     private Rectangle boundingBox;
 
-    public Player(int x, int y, int health) {
+    public Player(int x, int y) {
         this.setX(x);
         this.setY(y);
-        this.setHealth(health);
+        this.setHealth(100);
+        this.setVelX(0);
 
         this.boundingBox = new Rectangle(this.x, this.y, 300, 200);
 
@@ -32,11 +37,13 @@ public class Player {
         movingUp = false;
     }
     public void update() {
-
+        this.x += this.velX * Player.SPEED;
+        //System.out.println("update - "+x);
     }
 
     public void render(Graphics g) {
         g.drawImage(this.getPlayerImage(), this.x, this.y, null);
+        //System.out.println("render - "+x);
     }
 
     public boolean intersects(Rectangle r) {
@@ -73,6 +80,14 @@ public class Player {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public int getVelX() {
+        return velX;
+    }
+
+    public void setVelX(int velX) {
+        this.velX = velX;
     }
 
     public void setPlayerImage(BufferedImage playerImage) {
