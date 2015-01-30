@@ -35,6 +35,7 @@ public class Game implements Runnable {
 
     public void init() {
         this.display = new Display(this.title, this.width, this.height);
+        this.display.addKeyListener(new InputHandler());
         Assets.init();
         currentState = StateManager.getCurrentState();
         // Initialize players here.

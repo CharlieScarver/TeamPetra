@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 // Drawing the display here.
-public class Display extends Canvas{
+public class Display extends Canvas {
     private int width;
     private int height;
     private String title;

@@ -10,10 +10,10 @@ public class Player {
     private int health;
     private int velocity;
 
-    public boolean movingUp;
-    public boolean movingDown;
-    public boolean movingLeft;
-    public boolean movingRight;
+    public static boolean movingUp;
+    public static boolean movingDown;
+    public static boolean movingLeft;
+    public static boolean movingRight;
 
     private BufferedImage playerImage;
     private Rectangle boundingBox;
@@ -26,14 +26,13 @@ public class Player {
         this.boundingBox = new Rectangle(this.x, this.y, 300, 200);
 
         this.velocity = 2;
-        this.movingDown = false;
-        this.movingLeft = false;
-        this.movingRight = false;
-        this.movingUp = false;
+        movingDown = false;
+        movingLeft = false;
+        movingRight = false;
+        movingUp = false;
     }
     public void update() {
-        this.x += this.velocity;
-        this.boundingBox.x = this.x;
+        
     }
 
     public void render(Graphics g) {
