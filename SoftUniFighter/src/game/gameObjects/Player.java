@@ -1,49 +1,115 @@
 package game.gameObjects;
 
+import gfx.Assets;
+import gfx.ImageLoader;
+
 import javax.xml.transform.sax.SAXSource;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 // All the player's data goes here.
 public class Player {
     private int x;
     private int y;
+    private int width, height;
     private int health;
     private int velocity;
 
-    private static final int SPEED = 10;
-    private int velX;
+    private int walkState;
+    private boolean printWalkImg1;
 
     public static boolean movingUp;
     public static boolean movingDown;
     public static boolean movingLeft;
     public static boolean movingRight;
+    public static int punching;
+    public static int kicking;
 
-    private BufferedImage playerImage;
+    private BufferedImage playerWalk1, playerWalk2;
+    private BufferedImage playerPunch, playerKick;
     private Rectangle boundingBox;
 
-    public Player(int x, int y) {
+    public Player(int x, int y, String pathWalk1, String pathWalk2, String pathPunch, String pathKick) {
         this.setX(x);
         this.setY(y);
         this.setHealth(100);
-        this.setVelX(0);
 
-        this.boundingBox = new Rectangle(this.x, this.y, 300, 200);
+        this.walkState = 1;
+        this.printWalkImg1 = false;
 
-        this.velocity = 2;
+        this.width = 300;
+        this.height = 200;
+
+        this.boundingBox = new Rectangle(this.width, this.height);
+
+        this.velocity = 4;
         movingDown = false;
         movingLeft = false;
         movingRight = false;
         movingUp = false;
+        punching = 0;
+        kicking = 0;
+
+        playerWalk1 = ImageLoader.loadImage(pathWalk1);
+        playerWalk2 = ImageLoader.loadImage(pathWalk2);
+        playerPunch = ImageLoader.loadImage(pathPunch);
+        playerKick = ImageLoader.loadImage(pathKick);
     }
+
     public void update() {
-        this.x += this.velX * Player.SPEED;
-        //System.out.println("update - "+x);
+        this.boundingBox.setBounds(this.x, this.y, this.width, this.height);
+
+        if(movingLeft) {
+            this.x -= this.velocity;
+        }
+        if(movingRight) {
+            this.x += this.velocity;
+        }
+
+        if (this.x < -20) {
+            this.x = -20;
+        } else if (this.x > 700) {
+            this.x = 700;
+        }
     }
 
     public void render(Graphics g) {
-        g.drawImage(this.getPlayerImage(), this.x, this.y, null);
-        //System.out.println("render - "+x);
+        if (!(punching > 0) && !(kicking > 0)) {
+            if (movingLeft || movingRight) {
+                if (walkState % 5 == 0) {
+                    if (printWalkImg1) {
+                        printWalkImg1 = false;
+                    } else {
+                        printWalkImg1 = true;
+                    }
+                    walkState = 1;
+                }
+
+                if (printWalkImg1) {
+                    g.drawImage(this.playerWalk2, this.x, this.y, null);
+                } else {
+                    g.drawImage(this.playerWalk1, this.x, this.y, null);
+                }
+                walkState++;
+            } else {
+                g.drawImage(this.playerWalk1, this.x, this.y, null);
+                walkState = 1;
+            }
+        } else if (punching > 0) {
+            g.drawImage(this.playerPunch, this.x, this.y, null);
+            punching++;
+            if (punching > 8) {
+                punching = 0;
+            }
+        } else if (kicking > 0) {
+            g.drawImage(this.playerKick, this.x, this.y, null);
+            kicking++;
+            if (kicking > 8) {
+                kicking = 0;
+            }
+        }
+
     }
 
     public boolean intersects(Rectangle r) {
@@ -82,19 +148,4 @@ public class Player {
         this.health = health;
     }
 
-    public int getVelX() {
-        return velX;
-    }
-
-    public void setVelX(int velX) {
-        this.velX = velX;
-    }
-
-    public void setPlayerImage(BufferedImage playerImage) {
-        this.playerImage = playerImage;
-    }
-
-    public BufferedImage getPlayerImage() {
-        return playerImage;
-    }
 }

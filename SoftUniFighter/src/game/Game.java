@@ -21,12 +21,13 @@ public class Game implements Runnable {
     private  boolean isRunning;
     private Display display;
 
+    private InputHandler inputHandler;
     private BufferStrategy bs;
     private Graphics g;
     private State currentState;
 
-    private static Player player1;
-    private static Player player2;
+    public static Player player1;
+    public static Player player2;
 
     public Game(String title, int width, int height) {
         this.title = title;
@@ -37,15 +38,25 @@ public class Game implements Runnable {
 
     public void init() {
         this.display = new Display(this.title, this.width, this.height);
-        this.display.addKeyListener(new InputHandler());
+        //this.display.addKeyListener(new InputHandler());
+        this.inputHandler = new InputHandler(this.display);
+
         Assets.init();
         currentState = StateManager.getCurrentState();
 
         // Initialize players here.
-        this.player1 = new Player(50, 250);
-        this.player1.setPlayerImage(ImageLoader.loadImage("images" + File.separator + "NakovHeadDefaultFighter1PNG.png"));
-        this.player2 = new Player(648, 330);
-        this.player2.setPlayerImage(ImageLoader.loadImage("images" + File.separator + "ProffHeadDefaultFighter2MirroredPNG.png"));
+        player1 = new Player(50, 250,
+                "images" + File.separator + "NakovHeadDefaultFighter1PNG.png",
+                "images" + File.separator + "NakovWalk.png",
+                "images" + File.separator + "NakovPunch.png",
+                "images" + File.separator + "NakovKick.png");
+
+
+        player2 = new Player(648, 330,
+                "images" + File.separator + "ProffHeadDefaultFighter2MirroredPNG.png",
+                "images" + File.separator + "ProffWalk.png",
+                "images" + File.separator + "ProffPunch.png",
+                "images" + File.separator + "ProffKick.png");
 
     }
 
@@ -98,8 +109,8 @@ public class Game implements Runnable {
     }
 // Can also be tick(), logic goes here.
     private void update() {
-        this.player1.update();
-        this.player2.update();
+        player1.update();
+        player2.update();
 //        if (this.player1.intersects(player2.getBoundingBox())) {
 //            //intersection logic - is in attacking stance, what happens, reduce health, etc.
 //        }
@@ -117,19 +128,19 @@ public class Game implements Runnable {
 
         g.drawImage(Assets.background, 0, 0, null);
         //Draw here.
-        this.player1.render(g);
-        this.player2.render(g);
+        player1.render(g);
+        player2.render(g);
 
         this.bs.show();
         this.g.dispose();
     }
 
-    public static Player getPlayer1() {
-        return player1;
+    public int getWidth() {
+        return this.width;
     }
 
-    public static Player getPlayer2() {
-        return player2;
+    public int getHeight() {
+        return this.height;
     }
 
 }
