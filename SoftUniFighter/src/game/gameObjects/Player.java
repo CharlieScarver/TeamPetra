@@ -19,12 +19,12 @@ public class Player {
     private int walkState;
     private boolean printWalkImg1;
 
-    public static boolean movingUp;
-    public static boolean movingDown;
-    public static boolean movingLeft;
-    public static boolean movingRight;
-    public static int punching;
-    public static int kicking;
+    public boolean movingUp;
+    public boolean movingDown;
+    public boolean movingLeft;
+    public boolean movingRight;
+    public int punching;
+    public int kicking;
 
     private BufferedImage playerWalk1, playerWalk2;
     private BufferedImage playerPunch, playerKick;
