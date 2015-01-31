@@ -63,9 +63,10 @@ public class Player {
         if(movingLeft) {
             this.x -= this.velocity;
         }
-        if(movingRight) {
+        if(movingRight || punching > 0 || kicking > 0) {
             this.x += this.velocity;
         }
+
 
         if (this.x < -20) {
             this.x = -20;
@@ -102,12 +103,15 @@ public class Player {
             if (punching > 8) {
                 punching = 0;
             }
-        } else if (kicking > 0) {
+        } else if (kicking > 0 && punching == 0) {
             g.drawImage(this.playerKick, this.x, this.y, null);
             kicking++;
             if (kicking > 8) {
                 kicking = 0;
             }
+        } else {
+            g.drawImage(this.playerWalk1, this.x, this.y, null);
+            walkState = 1;
         }
 
     }

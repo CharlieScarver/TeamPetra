@@ -1,0 +1,12 @@
+Nakov:
+Left - A
+Right - D
+Punch - G
+Kick - H
+
+Prof:
+Left - Left Arrow
+Right - Right Arrow
+Punch - K
+Kick - L
+

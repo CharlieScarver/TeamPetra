@@ -39,7 +39,7 @@ public class Game implements Runnable {
     public void init() {
         this.display = new Display(this.title, this.width, this.height);
         //this.display.addKeyListener(new InputHandler());
-        this.inputHandler = new InputHandler(this.display);
+
 
         Assets.init();
         currentState = StateManager.getCurrentState();
@@ -52,12 +52,14 @@ public class Game implements Runnable {
                 "images" + File.separator + "NakovKick.png");
 
 
-        player2 = new Player(648, 330,
-                "images" + File.separator + "ProffHeadDefaultFighter2MirroredPNG.png",
-                "images" + File.separator + "ProffWalk.png",
-                "images" + File.separator + "ProffPunch.png",
-                "images" + File.separator + "ProffKick.png");
+        player2 = new Player(600, 250,
+                "images" + File.separator + "ProfNormal.png",
+                "images" + File.separator + "ProfWalk.png",
+                "images" + File.separator + "ProfPunch.png",
+                "images" + File.separator + "ProfKick.png");
 
+
+        this.inputHandler = new InputHandler(this.display, player1, player2);
     }
 
     public synchronized void start() {

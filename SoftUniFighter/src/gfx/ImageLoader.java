@@ -13,6 +13,12 @@ public class ImageLoader {
             e.printStackTrace();
         }
 
+        try {
+            return ImageIO.read(new File("SoftUniFighter" + File.separator + path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 }
