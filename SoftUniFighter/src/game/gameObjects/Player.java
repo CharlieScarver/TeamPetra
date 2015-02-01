@@ -19,12 +19,12 @@ public class Player {
     private int walkState;
     private boolean printWalkImg1;
 
-    public boolean movingUp;
-    public boolean movingDown;
-    public boolean movingLeft;
-    public boolean movingRight;
-    public int punching;
-    public int kicking;
+    private boolean movingUp;
+    private boolean movingDown;
+    private boolean movingLeft;
+    private boolean movingRight;
+    private int punching;
+    private int kicking;
 
     private String identity;
 
@@ -47,32 +47,32 @@ public class Player {
         this.boundingBox = new Rectangle(this.width, this.height);
 
         this.velocity = 4;
-        movingDown = false;
-        movingLeft = false;
-        movingRight = false;
-        movingUp = false;
-        punching = 0;
-        kicking = 0;
+        this.movingDown = false;
+        this.movingLeft = false;
+        this.movingRight = false;
+        this.movingUp = false;
+        this.punching = 0;
+        this.kicking = 0;
 
-        playerWalk1 = ImageLoader.loadImage(pathWalk1);
-        playerWalk2 = ImageLoader.loadImage(pathWalk2);
-        playerPunch = ImageLoader.loadImage(pathPunch);
-        playerKick = ImageLoader.loadImage(pathKick);
+        this.playerWalk1 = ImageLoader.loadImage(pathWalk1);
+        this.playerWalk2 = ImageLoader.loadImage(pathWalk2);
+        this.playerPunch = ImageLoader.loadImage(pathPunch);
+        this.playerKick = ImageLoader.loadImage(pathKick);
     }
 
     public void update() {
         this.boundingBox.setBounds(this.x, this.y, this.width, this.height);
 
-        if(movingLeft) {
+        if(this.movingLeft) {
             this.x -= this.velocity;
         }
-        if(movingRight) {
+        if(this.movingRight) {
             this.x += this.velocity;
         }
 
-        if ((punching > 0 || kicking > 0) && identity.equals("Nakov")) {
+        if ((this.punching > 0 || this.kicking > 0) && this.identity.equals("Nakov")) {
             this.x += this.velocity/2;
-        } else if ((punching > 0 || kicking > 0) && identity.equals("Prof")) {
+        } else if ((this.punching > 0 || this.kicking > 0) && this.identity.equals("Prof")) {
             this.x -= this.velocity/2;
         }
 
@@ -84,42 +84,42 @@ public class Player {
     }
 
     public void render(Graphics g) {
-        if (!(punching > 0) && !(kicking > 0)) {
-            if (movingLeft || movingRight) {
-                if (walkState % 5 == 0) {
-                    if (printWalkImg1) {
-                        printWalkImg1 = false;
+        if (!(this.punching > 0) && !(this.kicking > 0)) {
+            if (this.movingLeft || this.movingRight) {
+                if (this.walkState % 5 == 0) {
+                    if (this.printWalkImg1) {
+                        this.printWalkImg1 = false;
                     } else {
-                        printWalkImg1 = true;
+                        this.printWalkImg1 = true;
                     }
-                    walkState = 1;
+                    this.walkState = 1;
                 }
 
-                if (printWalkImg1) {
+                if (this.printWalkImg1) {
                     g.drawImage(this.playerWalk2, this.x, this.y, null);
                 } else {
                     g.drawImage(this.playerWalk1, this.x, this.y, null);
                 }
-                walkState++;
+                this.walkState++;
             } else {
                 g.drawImage(this.playerWalk1, this.x, this.y, null);
-                walkState = 1;
+                this.walkState = 1;
             }
-        } else if (punching > 0) {
+        } else if (this.punching > 0) {
             g.drawImage(this.playerPunch, this.x, this.y, null);
-            punching++;
-            if (punching > 8) {
-                punching = 0;
+            this.punching++;
+            if (this.punching > 8) {
+                this.punching = 0;
             }
-        } else if (kicking > 0 && punching == 0) {
+        } else if (this.kicking > 0 && this.punching == 0) {
             g.drawImage(this.playerKick, this.x, this.y, null);
-            kicking++;
-            if (kicking > 8) {
-                kicking = 0;
+            this.kicking++;
+            if (this.kicking > 8) {
+                this.kicking = 0;
             }
         } else {
             g.drawImage(this.playerWalk1, this.x, this.y, null);
-            walkState = 1;
+            this.walkState = 1;
         }
 
     }
@@ -158,6 +158,54 @@ public class Player {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public boolean isMovingUp() {
+        return movingUp;
+    }
+
+    public void setMovingUp(boolean movingUp) {
+        this.movingUp = movingUp;
+    }
+
+    public boolean isMovingDown() {
+        return movingDown;
+    }
+
+    public void setMovingDown(boolean movingDown) {
+        this.movingDown = movingDown;
+    }
+
+    public boolean isMovingLeft() {
+        return movingLeft;
+    }
+
+    public void setMovingLeft(boolean movingLeft) {
+        this.movingLeft = movingLeft;
+    }
+
+    public boolean isMovingRight() {
+        return movingRight;
+    }
+
+    public void setMovingRight(boolean movingRight) {
+        this.movingRight = movingRight;
+    }
+
+    public int getPunching() {
+        return punching;
+    }
+
+    public void setPunching(int punching) {
+        this.punching = punching;
+    }
+
+    public int getKicking() {
+        return kicking;
+    }
+
+    public void setKicking(int kicking) {
+        this.kicking = kicking;
     }
 
 }

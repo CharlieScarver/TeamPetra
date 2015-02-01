@@ -30,45 +30,53 @@ public class InputHandler implements KeyListener{
         // Player 1 - Nakov
         if (keyCode == KeyEvent.VK_D) {
             //Go right
-            this.player1.movingRight = true;
+            this.player1.setMovingRight(true);
+            this.player1.setMovingLeft(false);
         }
         if (keyCode == KeyEvent.VK_A) {
             //Go left
-            this.player1.movingLeft = true;
+            this.player1.setMovingLeft(true);
+            this.player1.setMovingRight(false);
         }
 
         if (keyCode == KeyEvent.VK_G) {
-            if (this.player1.kicking == 0) {
+            if (this.player1.getKicking() == 0) {
                 // Punch
-                this.player1.punching = 1;
+                this.player1.setPunching(1);
             }
         } else if (keyCode == KeyEvent.VK_H) {
-            if (this.player1.punching == 0) {
+            if (this.player1.getPunching() == 0) {
                 // Kick
-                this.player1.kicking = 1;
+                this.player1.setKicking(1);
             }
         }
 
         // Player 2 - Prof
         if (keyCode == KeyEvent.VK_RIGHT) {
             //Go right
-            this.player2.movingRight = true;
+            this.player2.setMovingRight(true);
+            this.player2.setMovingLeft(false);
         }
         if (keyCode == KeyEvent.VK_LEFT) {
             //Go left
-            this.player2.movingLeft = true;
+            this.player2.setMovingLeft(true);
+            this.player2.setMovingRight(false);
         }
 
-        if (keyCode == KeyEvent.VK_K) {
-            if (this.player2.kicking == 0) {
+/*        if (keyCode == KeyEvent.VK_K) {
+            if (this.player2.getKicking() == 0) {
                 // Punch
-                this.player2.punching = 1;
+                this.player2.setPunching(1);
             }
         } else if (keyCode == KeyEvent.VK_L) {
-            if (this.player2.punching == 0) {
+            if (this.player2.getPunching() == 0) {
                 // Kick
-                this.player2.kicking = 1;
+                this.player2.setKicking(1);
             }
+        }*/
+
+        if (keyCode == KeyEvent.VK_ESCAPE) {
+            System.exit(0);
         }
     }
 
@@ -79,21 +87,35 @@ public class InputHandler implements KeyListener{
         // Player 1 - Nakov
         if (keyCode == KeyEvent.VK_D) {
             //Go right
-            this.player1.movingRight = false;
+            this.player1.setMovingRight(false);
         }
         if (keyCode == KeyEvent.VK_A) {
             //Go left
-            this.player1.movingLeft = false;
+            this.player1.setMovingLeft(false);
         }
 
         // Player 2 - Prof
         if (keyCode == KeyEvent.VK_RIGHT) {
             //Go right
-            this.player2.movingRight = false;
+            this.player2.setMovingRight(false);
         }
         if (keyCode == KeyEvent.VK_LEFT) {
             //Go left
-            this.player2.movingLeft = false;
+            this.player2.setMovingLeft(false);
+        }
+
+        //---Test---Do not delete
+
+        if (keyCode == KeyEvent.VK_K) {
+            if (this.player2.getKicking() == 0) {
+                // Punch
+                this.player2.setPunching(1);
+            }
+        } else if (keyCode == KeyEvent.VK_L) {
+            if (this.player2.getPunching() == 0) {
+                // Kick
+                this.player2.setKicking(1);
+            }
         }
     }
 }

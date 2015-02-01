@@ -40,19 +40,18 @@ public class Game implements Runnable {
         this.display = new Display(this.title, this.width, this.height);
         //this.display.addKeyListener(new InputHandler());
 
-
         Assets.init();
         currentState = StateManager.getCurrentState();
 
         // Initialize players here.
-        player1 = new Player(50, 250, "Nakov",
+        player1 = new Player(0, 240, "Nakov",
                 "images" + File.separator + "NakovHeadDefaultFighter1PNG.png",
                 "images" + File.separator + "NakovWalk.png",
                 "images" + File.separator + "NakovPunch.png",
                 "images" + File.separator + "NakovKick.png");
 
 
-        player2 = new Player(600, 250, "Prof",
+        player2 = new Player(590, 240, "Prof",
                 "images" + File.separator + "ProfNormal.png",
                 "images" + File.separator + "ProfWalk.png",
                 "images" + File.separator + "ProfPunch.png",
@@ -107,7 +106,7 @@ public class Game implements Runnable {
             }
         }
 
-        stop();
+        this.stop();
     }
 // Can also be tick(), logic goes here.
     private void update() {
