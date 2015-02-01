@@ -10,13 +10,13 @@ public class ImageLoader {
         try {
             return ImageIO.read(new File(path));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Short path not found.");
         }
 
         try {
             return ImageIO.read(new File("SoftUniFighter" + File.separator + path));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Long path not found.");
         }
 
         return null;

@@ -1,15 +1,18 @@
 package game.gameObjects;
 
-import gfx.Assets;
 import gfx.ImageLoader;
 
-import javax.xml.transform.sax.SAXSource;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 // All the player's data goes here.
 public class Player {
+    private static final String Nakov = "Nakov";
+    private static final String Prof = "Prof";
+    private static final int NakovXOffset = 45;
+    private static final int ProfXOffset = 100;
+    private static final int YOffset = 40;
+
     private int x;
     private int y;
     private int width, height;
@@ -26,13 +29,14 @@ public class Player {
     private int punching;
     private int kicking;
 
-    private String identity;
+    private CharacterEnum identity;
 
     private BufferedImage playerWalk1, playerWalk2;
     private BufferedImage playerPunch, playerKick;
+
     private Rectangle boundingBox;
 
-    public Player(int x, int y, String id, String pathWalk1, String pathWalk2, String pathPunch, String pathKick) {
+    public Player(int x, int y, CharacterEnum id, String pathWalk1, String pathWalk2, String pathPunch, String pathKick) {
         this.setX(x);
         this.setY(y);
         this.setHealth(100);
@@ -42,7 +46,7 @@ public class Player {
         this.printWalkImg1 = false;
 
         this.width = 300;
-        this.height = 200;
+        this.height = 450;
 
         this.boundingBox = new Rectangle(this.width, this.height);
 
@@ -61,7 +65,11 @@ public class Player {
     }
 
     public void update() {
-        this.boundingBox.setBounds(this.x, this.y, this.width, this.height);
+        if (this.identity.equals(Nakov)) {
+            this.boundingBox.setBounds(this.x + NakovXOffset, this.y + YOffset, this.width, this.height);
+        } else {
+            this.boundingBox.setBounds(this.x + ProfXOffset, this.y + YOffset, this.width, this.height);
+        }
 
         if(this.movingLeft) {
             this.x -= this.velocity;
@@ -70,9 +78,9 @@ public class Player {
             this.x += this.velocity;
         }
 
-        if ((this.punching > 0 || this.kicking > 0) && this.identity.equals("Nakov")) {
+        if ((this.punching > 0 || this.kicking > 0) && this.identity.equals(CharacterEnum.Nakov)) {
             this.x += this.velocity/2;
-        } else if ((this.punching > 0 || this.kicking > 0) && this.identity.equals("Prof")) {
+        } else if ((this.punching > 0 || this.kicking > 0) && this.identity.equals(CharacterEnum.Prof)) {
             this.x -= this.velocity/2;
         }
 
@@ -121,6 +129,9 @@ public class Player {
             g.drawImage(this.playerWalk1, this.x, this.y, null);
             this.walkState = 1;
         }
+
+        //TODO: Remove below code after testing
+        g.drawRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
 
     }
 

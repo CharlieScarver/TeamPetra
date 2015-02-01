@@ -1,6 +1,7 @@
 package game;
 
 import display.*;
+import game.gameObjects.CharacterEnum;
 import game.gameObjects.Player;
 import gfx.Assets;
 import gfx.ImageLoader;
@@ -44,14 +45,14 @@ public class Game implements Runnable {
         currentState = StateManager.getCurrentState();
 
         // Initialize players here.
-        player1 = new Player(0, 240, "Nakov",
+        player1 = new Player(0, 240, CharacterEnum.Nakov,
                 "images" + File.separator + "NakovHeadDefaultFighter1PNG.png",
                 "images" + File.separator + "NakovWalk.png",
                 "images" + File.separator + "NakovPunch.png",
                 "images" + File.separator + "NakovKick.png");
 
 
-        player2 = new Player(590, 240, "Prof",
+        player2 = new Player(590, 240, CharacterEnum.Prof,
                 "images" + File.separator + "ProfNormal.png",
                 "images" + File.separator + "ProfWalk.png",
                 "images" + File.separator + "ProfPunch.png",
