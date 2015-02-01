@@ -14,6 +14,8 @@ import java.io.File;
 
 // All of the game's logic goes here.
 public class Game implements Runnable {
+    private static final int ActionScene = 8;
+
     private String title;
     private int width;
     private int height;
@@ -115,10 +117,10 @@ public class Game implements Runnable {
         player2.update();
         if (this.player1.intersects(player2)) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
-            if (this.player1.getKicking() == 1) {
+            if (this.player1.getKicking() == ActionScene) {
                 this.player2.setHealth(this.player2.getHealth() - 10);
                 this.player2.pushBack();
-            } else if (this.player1.getPunching() == 1) {
+            } else if (this.player1.getPunching() == ActionScene) {
                 this.player2.setHealth(this.player2.getHealth() - 5);
                 this.player2.pushBack();
             }
@@ -126,10 +128,10 @@ public class Game implements Runnable {
 
         if (this.player2.intersects(player1)) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
-            if (this.player2.getKicking() == 1) {
+            if (this.player2.getKicking() == ActionScene) {
                 this.player1.setHealth(this.player1.getHealth() - 10);
                 this.player1.pushBack();
-            } else if (this.player2.getPunching() == 1) {
+            } else if (this.player2.getPunching() == ActionScene) {
                 this.player1.setHealth(this.player1.getHealth() - 5);
                 this.player1.pushBack();
             }

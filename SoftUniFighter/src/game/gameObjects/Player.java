@@ -4,6 +4,8 @@ import gfx.ImageLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Timer;
+import java.util.TimerTask;
 
 // All the player's data goes here.
 public class Player {
@@ -26,6 +28,8 @@ public class Player {
     private boolean movingDown;
     private boolean movingLeft;
     private boolean movingRight;
+
+    private boolean canHit;
     private int punching;
     private int kicking;
 
@@ -33,6 +37,8 @@ public class Player {
 
     private BufferedImage playerWalk1, playerWalk2;
     private BufferedImage playerPunch, playerKick;
+
+    private Timer timer;
 
     private Rectangle boundingBox;
 
@@ -55,8 +61,11 @@ public class Player {
         this.movingLeft = false;
         this.movingRight = false;
         this.movingUp = false;
+        this.canHit = true;
         this.punching = 0;
         this.kicking = 0;
+
+        this.timer = new Timer();
 
         this.playerWalk1 = ImageLoader.loadImage(pathWalk1);
         this.playerWalk2 = ImageLoader.loadImage(pathWalk2);
@@ -113,25 +122,37 @@ public class Player {
                 g.drawImage(this.playerWalk1, this.x, this.y, null);
                 this.walkState = 1;
             }
-        } else if (this.punching > 0) {
+        } else if (this.punching > 0 && this.canHit) {
             g.drawImage(this.playerPunch, this.x, this.y, null);
             this.punching++;
             if (this.punching > 8) {
                 this.punching = 0;
+                this.canHit = false;
             }
 
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
-        } else if (this.kicking > 0 && this.punching == 0) {
+        } else if (this.kicking > 0 && this.punching == 0 && this.canHit) {
             g.drawImage(this.playerKick, this.x, this.y, null);
             this.kicking++;
             if (this.kicking > 8) {
                 this.kicking = 0;
+                this.canHit = false;
             }
 
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
         } else {
             g.drawImage(this.playerWalk1, this.x, this.y, null);
             this.walkState = 1;
+        }
+
+        if (!this.canHit) {
+            timer.purge();
+            this.timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    canHit = true;
+                }
+            }, 1000);
         }
     }
 
@@ -144,7 +165,11 @@ public class Player {
     }
 
     public void pushBack() {
-        this.x += this.velocity;
+        if (this.identity == CharacterEnum.Prof) {
+            this.x += this.velocity;
+        } else {
+            this.x -= this.velocity;
+        }
     }
 
     public Rectangle getBoundingBox() {
