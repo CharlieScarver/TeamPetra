@@ -65,7 +65,7 @@ public class Player {
     }
 
     public void update() {
-        if (this.identity.equals(Nakov)) {
+        if (this.identity.equals(CharacterEnum.Nakov)) {
             this.boundingBox.setBounds(this.x + NakovXOffset, this.y + YOffset, this.width, this.height);
         } else {
             this.boundingBox.setBounds(this.x + ProfXOffset, this.y + YOffset, this.width, this.height);
@@ -119,28 +119,32 @@ public class Player {
             if (this.punching > 8) {
                 this.punching = 0;
             }
+
+            this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
         } else if (this.kicking > 0 && this.punching == 0) {
             g.drawImage(this.playerKick, this.x, this.y, null);
             this.kicking++;
             if (this.kicking > 8) {
                 this.kicking = 0;
             }
+
+            this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
         } else {
             g.drawImage(this.playerWalk1, this.x, this.y, null);
             this.walkState = 1;
         }
-
-        //TODO: Remove below code after testing
-        g.drawRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
-
     }
 
-    public boolean intersects(Rectangle r) {
-        if (r.contains(this.boundingBox) || this.boundingBox.contains(r)) {
+    public boolean intersects(Player other) {
+        if (other.boundingBox.intersects(this.boundingBox) || this.boundingBox.intersects(other.boundingBox)) {
             return true;
         }
 
         return false;
+    }
+
+    public void pushBack() {
+        this.x += this.velocity;
     }
 
     public Rectangle getBoundingBox() {

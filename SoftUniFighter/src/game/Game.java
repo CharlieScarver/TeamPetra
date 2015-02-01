@@ -113,9 +113,27 @@ public class Game implements Runnable {
     private void update() {
         player1.update();
         player2.update();
-//        if (this.player1.intersects(player2.getBoundingBox())) {
-//            //intersection logic - is in attacking stance, what happens, reduce health, etc.
-//        }
+        if (this.player1.intersects(player2)) {
+            //intersection logic - is in attacking stance, what happens, reduce health, etc.
+            if (this.player1.getKicking() == 1) {
+                this.player2.setHealth(this.player2.getHealth() - 10);
+                this.player2.pushBack();
+            } else if (this.player1.getPunching() == 1) {
+                this.player2.setHealth(this.player2.getHealth() - 5);
+                this.player2.pushBack();
+            }
+        }
+
+        if (this.player2.intersects(player1)) {
+            //intersection logic - is in attacking stance, what happens, reduce health, etc.
+            if (this.player2.getKicking() == 1) {
+                this.player1.setHealth(this.player1.getHealth() - 10);
+                this.player1.pushBack();
+            } else if (this.player2.getPunching() == 1) {
+                this.player1.setHealth(this.player1.getHealth() - 5);
+                this.player1.pushBack();
+            }
+        }
     }
 // All drawing goes here.
     private void render() {
@@ -129,6 +147,8 @@ public class Game implements Runnable {
         g = this.bs.getDrawGraphics();
 
         g.drawImage(Assets.background, 0, 0, null);
+        g.drawString(String.valueOf(player1.getHealth()), 20, 20);
+        g.drawString(String.valueOf(player2.getHealth()), this.width - 50, 20);
         //Draw here.
         player1.render(g);
         player2.render(g);
