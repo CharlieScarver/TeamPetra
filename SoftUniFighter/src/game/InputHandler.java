@@ -27,6 +27,7 @@ public class InputHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
 
+        // Player 1 - Nakov
         if (keyCode == KeyEvent.VK_D) {
             //Go right
             this.player1.movingRight = true;
@@ -48,6 +49,7 @@ public class InputHandler implements KeyListener{
             }
         }
 
+        // Player 2 - Prof
         if (keyCode == KeyEvent.VK_RIGHT) {
             //Go right
             this.player2.movingRight = true;
@@ -74,6 +76,7 @@ public class InputHandler implements KeyListener{
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
 
+        // Player 1 - Nakov
         if (keyCode == KeyEvent.VK_D) {
             //Go right
             this.player1.movingRight = false;
@@ -83,6 +86,7 @@ public class InputHandler implements KeyListener{
             this.player1.movingLeft = false;
         }
 
+        // Player 2 - Prof
         if (keyCode == KeyEvent.VK_RIGHT) {
             //Go right
             this.player2.movingRight = false;

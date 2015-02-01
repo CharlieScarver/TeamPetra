@@ -45,14 +45,14 @@ public class Game implements Runnable {
         currentState = StateManager.getCurrentState();
 
         // Initialize players here.
-        player1 = new Player(50, 250,
+        player1 = new Player(50, 250, "Nakov",
                 "images" + File.separator + "NakovHeadDefaultFighter1PNG.png",
                 "images" + File.separator + "NakovWalk.png",
                 "images" + File.separator + "NakovPunch.png",
                 "images" + File.separator + "NakovKick.png");
 
 
-        player2 = new Player(600, 250,
+        player2 = new Player(600, 250, "Prof",
                 "images" + File.separator + "ProfNormal.png",
                 "images" + File.separator + "ProfWalk.png",
                 "images" + File.separator + "ProfPunch.png",

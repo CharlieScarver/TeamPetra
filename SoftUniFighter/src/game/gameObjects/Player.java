@@ -26,15 +26,18 @@ public class Player {
     public int punching;
     public int kicking;
 
+    private String identity;
+
     private BufferedImage playerWalk1, playerWalk2;
     private BufferedImage playerPunch, playerKick;
     private Rectangle boundingBox;
 
-    public Player(int x, int y, String pathWalk1, String pathWalk2, String pathPunch, String pathKick) {
+    public Player(int x, int y, String id, String pathWalk1, String pathWalk2, String pathPunch, String pathKick) {
         this.setX(x);
         this.setY(y);
         this.setHealth(100);
 
+        this.identity = id;
         this.walkState = 1;
         this.printWalkImg1 = false;
 
@@ -63,13 +66,18 @@ public class Player {
         if(movingLeft) {
             this.x -= this.velocity;
         }
-        if(movingRight || punching > 0 || kicking > 0) {
+        if(movingRight) {
             this.x += this.velocity;
         }
 
+        if ((punching > 0 || kicking > 0) && identity.equals("Nakov")) {
+            this.x += this.velocity/2;
+        } else if ((punching > 0 || kicking > 0) && identity.equals("Prof")) {
+            this.x -= this.velocity/2;
+        }
 
-        if (this.x < -20) {
-            this.x = -20;
+        if (this.x < -120) {
+            this.x = -120;
         } else if (this.x > 700) {
             this.x = 700;
         }
