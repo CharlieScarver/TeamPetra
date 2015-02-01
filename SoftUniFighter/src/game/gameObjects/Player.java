@@ -61,7 +61,7 @@ public class Player {
         this.movingLeft = false;
         this.movingRight = false;
         this.movingUp = false;
-        this.canHit = true;
+        this.setCanHit(true);
         this.punching = 0;
         this.kicking = 0;
 
@@ -122,21 +122,21 @@ public class Player {
                 g.drawImage(this.playerWalk1, this.x, this.y, null);
                 this.walkState = 1;
             }
-        } else if (this.punching > 0 && this.canHit) {
+        } else if (this.punching > 0 && this.isCanHit()) {
             g.drawImage(this.playerPunch, this.x, this.y, null);
             this.punching++;
             if (this.punching > 8) {
                 this.punching = 0;
-                this.canHit = false;
+                this.setCanHit(false);
             }
 
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
-        } else if (this.kicking > 0 && this.punching == 0 && this.canHit) {
+        } else if (this.kicking > 0 && this.punching == 0 && this.isCanHit()) {
             g.drawImage(this.playerKick, this.x, this.y, null);
             this.kicking++;
             if (this.kicking > 8) {
                 this.kicking = 0;
-                this.canHit = false;
+                this.setCanHit(false);
             }
 
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
@@ -145,12 +145,12 @@ public class Player {
             this.walkState = 1;
         }
 
-        if (!this.canHit) {
+        if (!this.isCanHit()) {
             timer.purge();
             this.timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    canHit = true;
+                    setCanHit(true);
                 }
             }, 1000);
         }
@@ -248,4 +248,11 @@ public class Player {
         this.kicking = kicking;
     }
 
+    public boolean isCanHit() {
+        return canHit;
+    }
+
+    public void setCanHit(boolean canHit) {
+        this.canHit = canHit;
+    }
 }

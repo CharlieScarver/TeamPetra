@@ -39,12 +39,12 @@ public class InputHandler implements KeyListener{
             this.player1.setMovingRight(false);
         }
 
-        if (keyCode == KeyEvent.VK_G) {
+        if (keyCode == KeyEvent.VK_G && this.player1.isCanHit()) {
             if (this.player1.getKicking() == 0) {
                 // Punch
                 this.player1.setPunching(1);
             }
-        } else if (keyCode == KeyEvent.VK_H) {
+        } else if (keyCode == KeyEvent.VK_H && this.player1.isCanHit()) {
             if (this.player1.getPunching() == 0) {
                 // Kick
                 this.player1.setKicking(1);
@@ -106,12 +106,12 @@ public class InputHandler implements KeyListener{
 
         //---Test---Do not delete
 
-        if (keyCode == KeyEvent.VK_K) {
+        if (keyCode == KeyEvent.VK_K && player2.isCanHit()) {
             if (this.player2.getKicking() == 0) {
                 // Punch
                 this.player2.setPunching(1);
             }
-        } else if (keyCode == KeyEvent.VK_L) {
+        } else if (keyCode == KeyEvent.VK_L && player2.isCanHit()) {
             if (this.player2.getPunching() == 0) {
                 // Kick
                 this.player2.setKicking(1);
