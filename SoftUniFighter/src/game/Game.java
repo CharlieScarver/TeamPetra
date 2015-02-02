@@ -91,7 +91,7 @@ public class Game implements Runnable {
     public void run() {
         this.init();
 
-        int fps = 30;
+        int fps = 240;
         double timePerTick = 1000000000.0 / fps;
         double deltaTime = 0;
         long lastTimeTicked = System.nanoTime();
@@ -149,6 +149,7 @@ public class Game implements Runnable {
         g = this.bs.getDrawGraphics();
 
         g.drawImage(Assets.background, 0, 0, null);
+        g.setColor(Color.white);
         g.drawString(String.valueOf(player1.getHealth()), 20, 20);
         g.drawString(String.valueOf(player2.getHealth()), this.width - 50, 20);
         //Draw here.

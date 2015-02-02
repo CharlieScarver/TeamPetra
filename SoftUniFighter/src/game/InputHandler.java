@@ -39,15 +39,23 @@ public class InputHandler implements KeyListener{
             this.player1.setMovingRight(false);
         }
 
-        if (keyCode == KeyEvent.VK_G && this.player1.isCanHit()) {
-            if (this.player1.getKicking() == 0) {
+        if (keyCode == KeyEvent.VK_G) {
+            if (this.player1.getKicking() == 0 && this.player1.isCanHit() && this.player1.isKeyReleased()) {
                 // Punch
                 this.player1.setPunching(1);
+                // Punch key pressed (hold)
+                this.player1.setKeyReleased(false);
+                // Can't hit again for now
+                this.player1.setCanHit(false);
             }
-        } else if (keyCode == KeyEvent.VK_H && this.player1.isCanHit()) {
-            if (this.player1.getPunching() == 0) {
+        } else if (keyCode == KeyEvent.VK_H) {
+            if (this.player1.getPunching() == 0 && this.player1.isCanHit() && this.player1.isKeyReleased()) {
                 // Kick
                 this.player1.setKicking(1);
+                // Kick key pressed (hold)
+                this.player1.setKeyReleased(false);
+                // Can't hit again for now
+                this.player1.setCanHit(false);
             }
         }
 
@@ -63,18 +71,28 @@ public class InputHandler implements KeyListener{
             this.player2.setMovingRight(false);
         }
 
-/*        if (keyCode == KeyEvent.VK_K) {
-            if (this.player2.getKicking() == 0) {
+        if (keyCode == KeyEvent.VK_K) {
+            if (this.player2.getKicking() == 0 && this.player2.isCanHit() && this.player2.isKeyReleased()) {
                 // Punch
                 this.player2.setPunching(1);
+                // Punch key pressed (hold)
+                this.player2.setKeyReleased(false);
+                // Can't hit again for now
+                this.player2.setCanHit(false);
             }
         } else if (keyCode == KeyEvent.VK_L) {
-            if (this.player2.getPunching() == 0) {
+            if (this.player2.getPunching() == 0 && this.player2.isCanHit() && this.player2.isKeyReleased()) {
                 // Kick
                 this.player2.setKicking(1);
+                // Kick key pressed (hold)
+                this.player2.setKeyReleased(false);
+                // Can't hit again for now
+                this.player2.setCanHit(false);
             }
-        }*/
+        }
 
+
+        // Exit game
         if (keyCode == KeyEvent.VK_ESCAPE) {
             System.exit(0);
         }
@@ -94,6 +112,14 @@ public class InputHandler implements KeyListener{
             this.player1.setMovingLeft(false);
         }
 
+        if (keyCode == KeyEvent.VK_G) {
+            // Punch key was released
+            this.player1.setKeyReleased(true);
+        } else if (keyCode == KeyEvent.VK_H) {
+            // Kick key was released
+            this.player1.setKeyReleased(true);
+        }
+
         // Player 2 - Prof
         if (keyCode == KeyEvent.VK_RIGHT) {
             //Go right
@@ -104,18 +130,13 @@ public class InputHandler implements KeyListener{
             this.player2.setMovingLeft(false);
         }
 
-        //---Test---Do not delete
-
-        if (keyCode == KeyEvent.VK_K && player2.isCanHit()) {
-            if (this.player2.getKicking() == 0) {
-                // Punch
-                this.player2.setPunching(1);
-            }
-        } else if (keyCode == KeyEvent.VK_L && player2.isCanHit()) {
-            if (this.player2.getPunching() == 0) {
-                // Kick
-                this.player2.setKicking(1);
-            }
+        if (keyCode == KeyEvent.VK_K) {
+            // Punch key was released
+            this.player2.setKeyReleased(true);
+        } else if (keyCode == KeyEvent.VK_L) {
+            // Kick key was released
+            this.player2.setKeyReleased(true);
         }
+
     }
 }

@@ -9,11 +9,12 @@ import java.util.TimerTask;
 
 // All the player's data goes here.
 public class Player {
-    private static final String Nakov = "Nakov";
-    private static final String Prof = "Prof";
     private static final int NakovXOffset = 45;
     private static final int ProfXOffset = 100;
     private static final int YOffset = 40;
+    private static final int WALK_ANIMATION_LENGTH = 13;
+    private static final int PUNCH_ANIMATION_LENGTH = 10;
+    private static final int KICK_ANIMATION_LENGTH = 18;
 
     private int x;
     private int y;
@@ -33,6 +34,8 @@ public class Player {
     private int punching;
     private int kicking;
 
+    private boolean keyReleased;
+
     private CharacterEnum identity;
 
     private BufferedImage playerWalk1, playerWalk2;
@@ -41,6 +44,8 @@ public class Player {
     private Timer timer;
 
     private Rectangle boundingBox;
+
+    public int counter = 1;
 
     public Player(int x, int y, CharacterEnum id, String pathWalk1, String pathWalk2, String pathPunch, String pathKick) {
         this.setX(x);
@@ -65,6 +70,8 @@ public class Player {
         this.punching = 0;
         this.kicking = 0;
 
+        this.setKeyReleased(true);
+
         this.timer = new Timer();
 
         this.playerWalk1 = ImageLoader.loadImage(pathWalk1);
@@ -74,6 +81,11 @@ public class Player {
     }
 
     public void update() {
+
+/*        if (this.identity.equals(CharacterEnum.Nakov) && isKeyReleased() && canHit) {
+            System.out.println("can hit");
+        }*/
+
         if (this.identity.equals(CharacterEnum.Nakov)) {
             this.boundingBox.setBounds(this.x + NakovXOffset, this.y + YOffset, this.width, this.height);
         } else {
@@ -88,9 +100,9 @@ public class Player {
         }
 
         if ((this.punching > 0 || this.kicking > 0) && this.identity.equals(CharacterEnum.Nakov)) {
-            this.x += this.velocity/2;
+            this.x += this.velocity/4;
         } else if ((this.punching > 0 || this.kicking > 0) && this.identity.equals(CharacterEnum.Prof)) {
-            this.x -= this.velocity/2;
+            this.x -= this.velocity/4;
         }
 
         if (this.x < -120) {
@@ -103,7 +115,7 @@ public class Player {
     public void render(Graphics g) {
         if (!(this.punching > 0) && !(this.kicking > 0)) {
             if (this.movingLeft || this.movingRight) {
-                if (this.walkState % 5 == 0) {
+                if (this.walkState % WALK_ANIMATION_LENGTH == 0) {
                     if (this.printWalkImg1) {
                         this.printWalkImg1 = false;
                     } else {
@@ -122,37 +134,62 @@ public class Player {
                 g.drawImage(this.playerWalk1, this.x, this.y, null);
                 this.walkState = 1;
             }
-        } else if (this.punching > 0 && this.isCanHit()) {
+
+        } else if (this.punching > 0 && this.kicking == 0) {
             g.drawImage(this.playerPunch, this.x, this.y, null);
             this.punching++;
-            if (this.punching > 8) {
-                this.punching = 0;
+/*            if  (this.punching == 2) {
                 this.setCanHit(false);
+                System.out.print(" Timeout1 ");
+            }*/
+            if (this.punching > PUNCH_ANIMATION_LENGTH) {
+                this.punching = 0;
             }
-
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
-        } else if (this.kicking > 0 && this.punching == 0 && this.isCanHit()) {
+
+        } else if (this.kicking > 0 && this.punching == 0) {
             g.drawImage(this.playerKick, this.x, this.y, null);
             this.kicking++;
-            if (this.kicking > 8) {
-                this.kicking = 0;
+/*            if  (this.kicking == 2) {
                 this.setCanHit(false);
+                System.out.print(" Timeout2 ");
+            }*/
+            if (this.kicking > KICK_ANIMATION_LENGTH) {
+                this.kicking = 0;
             }
-
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
+
         } else {
             g.drawImage(this.playerWalk1, this.x, this.y, null);
             this.walkState = 1;
         }
 
+/*      // Doesn't work as expected
         if (!this.isCanHit()) {
             timer.purge();
             this.timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    setCanHit(true);
+                    if (isKeyReleased()) {
+                        setCanHit(true);
+                    }
                 }
-            }, 1000);
+            }, 2000);
+        }*/
+
+        if (!this.isCanHit()) {
+            if (isKeyReleased()) {
+                counter++;
+
+                if (counter == 30) {
+                    setCanHit(true);
+                    counter = 1;
+                }
+            }
+        }
+
+        if (this.identity.equals(CharacterEnum.Prof)) {
+            System.out.println(this.identity + " " + this.canHit + " " + this.keyReleased);
         }
     }
 
@@ -254,5 +291,13 @@ public class Player {
 
     public void setCanHit(boolean canHit) {
         this.canHit = canHit;
+    }
+
+    public boolean isKeyReleased() {
+        return keyReleased;
+    }
+
+    public void setKeyReleased(boolean keyReleased) {
+        this.keyReleased = keyReleased;
     }
 }
