@@ -1,6 +1,7 @@
 package game;
 
 import display.*;
+import game.gameObjects.CharacterEnum;
 import game.gameObjects.Player;
 import gfx.Assets;
 import gfx.ImageLoader;
@@ -13,6 +14,8 @@ import java.io.File;
 
 // All of the game's logic goes here.
 public class Game implements Runnable {
+    private static final int ActionScene = 8;
+
     private String title;
     private int width;
     private int height;
@@ -40,19 +43,18 @@ public class Game implements Runnable {
         this.display = new Display(this.title, this.width, this.height);
         //this.display.addKeyListener(new InputHandler());
 
-
         Assets.init();
         currentState = StateManager.getCurrentState();
 
         // Initialize players here.
-        player1 = new Player(50, 250,
+        player1 = new Player(0, 240, CharacterEnum.Nakov,
                 "images" + File.separator + "NakovHeadDefaultFighter1PNG.png",
                 "images" + File.separator + "NakovWalk.png",
                 "images" + File.separator + "NakovPunch.png",
                 "images" + File.separator + "NakovKick.png");
 
 
-        player2 = new Player(600, 250,
+        player2 = new Player(590, 240, CharacterEnum.Prof,
                 "images" + File.separator + "ProfNormal.png",
                 "images" + File.separator + "ProfWalk.png",
                 "images" + File.separator + "ProfPunch.png",
@@ -89,7 +91,7 @@ public class Game implements Runnable {
     public void run() {
         this.init();
 
-        int fps = 30;
+        int fps = 240;
         double timePerTick = 1000000000.0 / fps;
         double deltaTime = 0;
         long lastTimeTicked = System.nanoTime();
@@ -107,15 +109,33 @@ public class Game implements Runnable {
             }
         }
 
-        stop();
+        this.stop();
     }
 // Can also be tick(), logic goes here.
     private void update() {
         player1.update();
         player2.update();
-//        if (this.player1.intersects(player2.getBoundingBox())) {
-//            //intersection logic - is in attacking stance, what happens, reduce health, etc.
-//        }
+        if (this.player1.intersects(player2)) {
+            //intersection logic - is in attacking stance, what happens, reduce health, etc.
+            if (this.player1.getKicking() == ActionScene) {
+                this.player2.setHealth(this.player2.getHealth() - 10);
+                this.player2.pushBack();
+            } else if (this.player1.getPunching() == ActionScene) {
+                this.player2.setHealth(this.player2.getHealth() - 5);
+                this.player2.pushBack();
+            }
+        }
+
+        if (this.player2.intersects(player1)) {
+            //intersection logic - is in attacking stance, what happens, reduce health, etc.
+            if (this.player2.getKicking() == ActionScene) {
+                this.player1.setHealth(this.player1.getHealth() - 10);
+                this.player1.pushBack();
+            } else if (this.player2.getPunching() == ActionScene) {
+                this.player1.setHealth(this.player1.getHealth() - 5);
+                this.player1.pushBack();
+            }
+        }
     }
 // All drawing goes here.
     private void render() {
@@ -129,6 +149,9 @@ public class Game implements Runnable {
         g = this.bs.getDrawGraphics();
 
         g.drawImage(Assets.background, 0, 0, null);
+        g.setColor(Color.white);
+        g.drawString(String.valueOf(player1.getHealth()), 20, 20);
+        g.drawString(String.valueOf(player2.getHealth()), this.width - 50, 20);
         //Draw here.
         player1.render(g);
         player2.render(g);
