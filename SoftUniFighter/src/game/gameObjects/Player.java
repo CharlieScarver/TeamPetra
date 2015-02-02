@@ -113,9 +113,13 @@ public class Player {
             this.x += this.velocity;
         }
 
-        if ((this.punching > 0 || this.kicking > 0) && this.identity.equals(CharacterEnum.Nakov)) {
+        if ((this.punching > 0 || this.kicking > 0) &&
+                ((this.identity.equals(CharacterEnum.Nakov) && !this.isReversed) ||
+                (this.identity.equals(CharacterEnum.Prof)  && this.isReversed))) {
             this.x += this.velocity/4;
-        } else if ((this.punching > 0 || this.kicking > 0) && this.identity.equals(CharacterEnum.Prof)) {
+        } else if ((this.punching > 0 || this.kicking > 0) &&
+                ((this.identity.equals(CharacterEnum.Prof) && !this.isReversed) ||
+                (this.identity.equals(CharacterEnum.Nakov) && this.isReversed))) {
             this.x -= this.velocity/4;
         }
 
@@ -210,10 +214,10 @@ public class Player {
     }
 
     public void pushBack() {
-        if (this.identity == CharacterEnum.Prof) {
+        if ((this.identity == CharacterEnum.Prof && !this.isReversed) || (this.identity == CharacterEnum.Nakov && this.isReversed)) {
             this.x += this.velocity * 5;
             this.setCanHit(false);
-        } else {
+        } else if ((this.identity == CharacterEnum.Nakov && this.isReversed) || (this.identity == CharacterEnum.Prof && this.isReversed)){
             this.x -= this.velocity * 5;
             this.setCanHit(false);
         }

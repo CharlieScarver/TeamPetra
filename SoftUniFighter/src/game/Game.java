@@ -161,9 +161,11 @@ public class Game implements Runnable {
         g = this.bs.getDrawGraphics();
 
         g.drawImage(Assets.background, 0, 0, null);
-        g.setColor(Color.white);
-        g.drawString(String.valueOf(player1.getHealth()), 20, 20);
-        g.drawString(String.valueOf(player2.getHealth()), this.width - 50, 20);
+        g.setColor(Color.red);
+        g.fillRect(20, 5, player1.getHealth(), 20);
+        g.fillRect(this.width - 120, 5, player2.getHealth(), 20);
+        //g.drawString(String.valueOf(player1.getHealth()), 20, 20);
+        //g.drawString(String.valueOf(player2.getHealth()), this.width - 50, 20);
         //Draw here.
         player1.render(g);
         player2.render(g);
