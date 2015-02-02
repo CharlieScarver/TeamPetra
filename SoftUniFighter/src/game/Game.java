@@ -91,7 +91,7 @@ public class Game implements Runnable {
     public void run() {
         this.init();
 
-        int fps = 240;
+        int fps = 120;
         double timePerTick = 1000000000.0 / fps;
         double deltaTime = 0;
         long lastTimeTicked = System.nanoTime();
@@ -120,6 +120,7 @@ public class Game implements Runnable {
             if (this.player1.getKicking() == ActionScene) {
                 this.player2.setHealth(this.player2.getHealth() - 10);
                 this.player2.pushBack();
+
             } else if (this.player1.getPunching() == ActionScene) {
                 this.player2.setHealth(this.player2.getHealth() - 5);
                 this.player2.pushBack();

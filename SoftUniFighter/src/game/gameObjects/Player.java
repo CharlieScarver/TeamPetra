@@ -15,6 +15,7 @@ public class Player {
     private static final int WALK_ANIMATION_LENGTH = 13;
     private static final int PUNCH_ANIMATION_LENGTH = 10;
     private static final int KICK_ANIMATION_LENGTH = 18;
+    private static final int AFTER_ATTACK_DELAY = 30;
 
     private int x;
     private int y;
@@ -82,10 +83,6 @@ public class Player {
 
     public void update() {
 
-/*        if (this.identity.equals(CharacterEnum.Nakov) && isKeyReleased() && canHit) {
-            System.out.println("can hit");
-        }*/
-
         if (this.identity.equals(CharacterEnum.Nakov)) {
             this.boundingBox.setBounds(this.x + NakovXOffset, this.y + YOffset, this.width, this.height);
         } else {
@@ -138,10 +135,7 @@ public class Player {
         } else if (this.punching > 0 && this.kicking == 0) {
             g.drawImage(this.playerPunch, this.x, this.y, null);
             this.punching++;
-/*            if  (this.punching == 2) {
-                this.setCanHit(false);
-                System.out.print(" Timeout1 ");
-            }*/
+
             if (this.punching > PUNCH_ANIMATION_LENGTH) {
                 this.punching = 0;
             }
@@ -150,10 +144,7 @@ public class Player {
         } else if (this.kicking > 0 && this.punching == 0) {
             g.drawImage(this.playerKick, this.x, this.y, null);
             this.kicking++;
-/*            if  (this.kicking == 2) {
-                this.setCanHit(false);
-                System.out.print(" Timeout2 ");
-            }*/
+
             if (this.kicking > KICK_ANIMATION_LENGTH) {
                 this.kicking = 0;
             }
@@ -181,7 +172,7 @@ public class Player {
             if (isKeyReleased()) {
                 counter++;
 
-                if (counter == 30) {
+                if (counter == AFTER_ATTACK_DELAY) {
                     setCanHit(true);
                     counter = 1;
                 }
@@ -203,9 +194,11 @@ public class Player {
 
     public void pushBack() {
         if (this.identity == CharacterEnum.Prof) {
-            this.x += this.velocity;
+            this.x += this.velocity * 5;
+            this.setCanHit(false);
         } else {
-            this.x -= this.velocity;
+            this.x -= this.velocity * 5;
+            this.setCanHit(false);
         }
     }
 
