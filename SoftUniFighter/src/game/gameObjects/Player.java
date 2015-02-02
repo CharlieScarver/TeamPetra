@@ -36,13 +36,25 @@ public class Player {
     private int kicking;
 
     private boolean keyReleased;
+    private boolean isReversed;
 
     private CharacterEnum identity;
 
-    private BufferedImage playerWalk1, playerWalk2;
-    private BufferedImage playerPunch, playerKick;
+    private BufferedImage playerWalk1;
+    private BufferedImage playerWalk2;
+    private BufferedImage reversePlayerStationary;
+    private BufferedImage reversePlayerWalk;
+    private BufferedImage playerPunch;
+    private BufferedImage playerKick;
+    private BufferedImage reversePlayerPunch;
+    private BufferedImage reversePlayerKick;
 
-    private Timer timer;
+    private BufferedImage playerCurrentStationary;
+    private BufferedImage playerCurrentWalk;
+    private BufferedImage playerCurrentPunch;
+    private BufferedImage playerCurrentKick;
+
+    //private Timer timer;
 
     private Rectangle boundingBox;
 
@@ -73,12 +85,17 @@ public class Player {
 
         this.setKeyReleased(true);
 
-        this.timer = new Timer();
+        //this.timer = new Timer();
 
         this.playerWalk1 = ImageLoader.loadImage(pathWalk1);
         this.playerWalk2 = ImageLoader.loadImage(pathWalk2);
         this.playerPunch = ImageLoader.loadImage(pathPunch);
         this.playerKick = ImageLoader.loadImage(pathKick);
+
+        this.playerCurrentStationary = this.playerWalk1;
+        this.playerCurrentWalk = this.playerWalk2;
+        this.playerCurrentPunch = this.playerPunch;
+        this.playerCurrentKick = this.playerKick;
     }
 
     public void update() {
@@ -122,18 +139,18 @@ public class Player {
                 }
 
                 if (this.printWalkImg1) {
-                    g.drawImage(this.playerWalk2, this.x, this.y, null);
+                    g.drawImage(this.playerCurrentWalk, this.x, this.y, null);
                 } else {
-                    g.drawImage(this.playerWalk1, this.x, this.y, null);
+                    g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
                 }
                 this.walkState++;
             } else {
-                g.drawImage(this.playerWalk1, this.x, this.y, null);
+                g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
                 this.walkState = 1;
             }
 
         } else if (this.punching > 0 && this.kicking == 0) {
-            g.drawImage(this.playerPunch, this.x, this.y, null);
+            g.drawImage(this.playerCurrentPunch, this.x, this.y, null);
             this.punching++;
 
             if (this.punching > PUNCH_ANIMATION_LENGTH) {
@@ -142,7 +159,7 @@ public class Player {
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
 
         } else if (this.kicking > 0 && this.punching == 0) {
-            g.drawImage(this.playerKick, this.x, this.y, null);
+            g.drawImage(this.playerCurrentKick, this.x, this.y, null);
             this.kicking++;
 
             if (this.kicking > KICK_ANIMATION_LENGTH) {
@@ -151,7 +168,7 @@ public class Player {
             this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
 
         } else {
-            g.drawImage(this.playerWalk1, this.x, this.y, null);
+            g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
             this.walkState = 1;
         }
 
@@ -199,6 +216,34 @@ public class Player {
         } else {
             this.x -= this.velocity * 5;
             this.setCanHit(false);
+        }
+    }
+
+    public void checkReverse(Player other) {
+        if (this.identity == CharacterEnum.Nakov) {
+            if (this.x > other.getX()) {
+                this.isReversed = true;
+            } else {
+                this.isReversed = false;
+            }
+        } else {
+            if (this.x < other.getX()) {
+                this.isReversed = true;
+            } else {
+                this.isReversed = false;
+            }
+        }
+
+        if (isReversed) {
+            this.playerCurrentStationary = this.reversePlayerStationary;
+            this.playerCurrentWalk = this.reversePlayerWalk;
+            this.playerCurrentKick = this.reversePlayerKick;
+            this.playerCurrentPunch = this.reversePlayerPunch;
+        } else {
+            this.playerCurrentStationary = this.playerWalk1;
+            this.playerCurrentWalk = this.playerWalk2;
+            this.playerCurrentPunch = this.playerPunch;
+            this.playerCurrentKick = this.playerKick;
         }
     }
 
@@ -293,4 +338,38 @@ public class Player {
     public void setKeyReleased(boolean keyReleased) {
         this.keyReleased = keyReleased;
     }
+
+    public BufferedImage getReversePlayerStationary() {
+        return reversePlayerStationary;
+    }
+
+    public void setReversePlayerStationary(BufferedImage reversePlayerStationary) {
+        this.reversePlayerStationary = reversePlayerStationary;
+    }
+
+    public BufferedImage getReversePlayerWalk() {
+        return reversePlayerWalk;
+    }
+
+    public void setReversePlayerWalk(BufferedImage reversePlayerWalk) {
+        this.reversePlayerWalk = reversePlayerWalk;
+    }
+
+    public BufferedImage getReversePlayerPunch() {
+        return reversePlayerPunch;
+    }
+
+    public void setReversePlayerPunch(BufferedImage reversePlayerPunch) {
+        this.reversePlayerPunch = reversePlayerPunch;
+    }
+
+    public BufferedImage getReversePlayerKick() {
+        return reversePlayerKick;
+    }
+
+    public void setReversePlayerKick(BufferedImage reversePlayerKick) {
+        this.reversePlayerKick = reversePlayerKick;
+    }
+
+
 }

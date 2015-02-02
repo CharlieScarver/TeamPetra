@@ -53,6 +53,10 @@ public class Game implements Runnable {
                 "images" + File.separator + "NakovPunch.png",
                 "images" + File.separator + "NakovKick.png");
 
+        player1.setReversePlayerStationary(ImageLoader.loadImage("images" + File.separator + "MNakovHeadDefaultFighter1PNG.png"));
+        player1.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MNakovKick.png"));
+        player1.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MNakovPunch.png"));
+        player1.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MNakovWalk.png"));
 
         player2 = new Player(590, 240, CharacterEnum.Prof,
                 "images" + File.separator + "ProfNormal.png",
@@ -60,6 +64,10 @@ public class Game implements Runnable {
                 "images" + File.separator + "ProfPunch.png",
                 "images" + File.separator + "ProfKick.png");
 
+        player2.setReversePlayerStationary(ImageLoader.loadImage("images" + File.separator + "MProfNormal.png"));
+        player2.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MProfKick.png"));
+        player2.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MProfPunch.png"));
+        player2.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MProfWalk.png"));
 
         this.inputHandler = new InputHandler(this.display, player1, player2);
     }
@@ -137,6 +145,9 @@ public class Game implements Runnable {
                 this.player1.pushBack();
             }
         }
+
+        player1.checkReverse(player2);
+        player2.checkReverse(player1);
     }
 // All drawing goes here.
     private void render() {
