@@ -60,6 +60,8 @@ public class Game implements Runnable {
         player1.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MNakovWalk.png"));
         player1.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MNakovPunch.png"));
         player1.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MNakovKick.png"));
+        player1.setPlayerBlock(Assets.nakovBlock);
+        player1.setPlayerRevBlock(Assets.nakovRevBlock);
 
         player2 = new Player(590, 240, CharacterEnum.Prof,
                 "images" + File.separator + "ProfNormal.png",
@@ -71,6 +73,8 @@ public class Game implements Runnable {
         player2.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MProfWalk.png"));
         player2.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MProfPunch.png"));
         player2.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MProfKick.png"));
+        player2.setPlayerBlock(Assets.profBlock);
+        player2.setPlayerRevBlock(Assets.profRevBlock);
 
         this.inputHandler = new InputHandler(this.display, player1, player2);
     }

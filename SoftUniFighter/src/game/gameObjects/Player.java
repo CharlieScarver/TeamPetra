@@ -49,11 +49,14 @@ public class Player {
     private BufferedImage playerKick;
     private BufferedImage reversePlayerPunch;
     private BufferedImage reversePlayerKick;
+    private BufferedImage playerBlock;
+    private BufferedImage playerRevBlock;
 
     private BufferedImage playerCurrentStationary;
     private BufferedImage playerCurrentWalk;
     private BufferedImage playerCurrentPunch;
     private BufferedImage playerCurrentKick;
+    private BufferedImage playerCurrentBlock;
 
     //private Timer timer;
 
@@ -148,51 +151,54 @@ public class Player {
     }
 
     public void render(Graphics g) {
-        if (!(this.punching > 0) && !(this.kicking > 0)) {
-            // Walking animation
-            if (this.movingLeft || this.movingRight) {
-                if (this.walkState % WALK_ANIMATION_LENGTH == 0) {
-                    if (this.printWalkImg1) {
-                        this.printWalkImg1 = false;
-                    } else {
-                        this.printWalkImg1 = true;
+        if (this.isBlocking()) {
+            g.drawImage(this.playerCurrentBlock, this.x, this.y, null);
+        } else {
+            if (!(this.punching > 0) && !(this.kicking > 0)) {
+                // Walking animation
+                if (this.movingLeft || this.movingRight) {
+                    if (this.walkState % WALK_ANIMATION_LENGTH == 0) {
+                        if (this.printWalkImg1) {
+                            this.printWalkImg1 = false;
+                        } else {
+                            this.printWalkImg1 = true;
+                        }
+                        this.walkState = 1;
                     }
+
+                    if (this.printWalkImg1) {
+                        g.drawImage(this.playerCurrentWalk, this.x, this.y, null);
+                    } else {
+                        g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
+                    }
+                    this.walkState++;
+                } else {
+                    g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
                     this.walkState = 1;
                 }
 
-                if (this.printWalkImg1) {
-                    g.drawImage(this.playerCurrentWalk, this.x, this.y, null);
-                } else {
-                    g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
+            } else if (this.punching > 0 && this.kicking == 0) {
+                // Punching animation
+                g.drawImage(this.playerCurrentPunch, this.x, this.y, null);
+                this.punching++;
+
+                if (this.punching > PUNCH_ANIMATION_LENGTH) {
+                    this.punching = 0;
                 }
-                this.walkState++;
+
+            } else if (this.kicking > 0 && this.punching == 0) {
+                // Kicking animation
+                g.drawImage(this.playerCurrentKick, this.x, this.y, null);
+                this.kicking++;
+
+                if (this.kicking > KICK_ANIMATION_LENGTH) {
+                    this.kicking = 0;
+                }
             } else {
+                //Standing still
                 g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
                 this.walkState = 1;
             }
-
-        } else if (this.punching > 0 && this.kicking == 0) {
-            // Punching animation
-            g.drawImage(this.playerCurrentPunch, this.x, this.y, null);
-            this.punching++;
-
-            if (this.punching > PUNCH_ANIMATION_LENGTH) {
-                this.punching = 0;
-            }
-
-        } else if (this.kicking > 0 && this.punching == 0) {
-            // Kicking animation
-            g.drawImage(this.playerCurrentKick, this.x, this.y, null);
-            this.kicking++;
-
-            if (this.kicking > KICK_ANIMATION_LENGTH) {
-                this.kicking = 0;
-            }
-
-        } else {
-            //Standing still
-            g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
-            this.walkState = 1;
         }
 
 /*      // Doesn't work as expected
@@ -268,11 +274,13 @@ public class Player {
             this.playerCurrentWalk = this.reversePlayerWalk;
             this.playerCurrentKick = this.reversePlayerKick;
             this.playerCurrentPunch = this.reversePlayerPunch;
+            this.playerCurrentBlock = this.playerRevBlock;
         } else {
             this.playerCurrentStationary = this.playerWalk1;
             this.playerCurrentWalk = this.playerWalk2;
             this.playerCurrentPunch = this.playerPunch;
             this.playerCurrentKick = this.playerKick;
+            this.playerCurrentBlock = this.playerBlock;
         }
     }
 
@@ -411,5 +419,21 @@ public class Player {
 
     public void setBlocking(boolean isBlocking) {
         this.isBlocking = isBlocking;
+    }
+
+    public BufferedImage getPlayerBlock() {
+        return playerBlock;
+    }
+
+    public void setPlayerBlock(BufferedImage playerBlock) {
+        this.playerBlock = playerBlock;
+    }
+
+    public BufferedImage getPlayerRevBlock() {
+        return playerRevBlock;
+    }
+
+    public void setPlayerRevBlock(BufferedImage playerRevBlock) {
+        this.playerRevBlock = playerRevBlock;
     }
 }

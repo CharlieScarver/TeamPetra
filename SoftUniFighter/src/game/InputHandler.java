@@ -147,7 +147,7 @@ public class InputHandler implements KeyListener{
         }
 
         if (keyCode == KeyEvent.VK_P) {
-            this.player2.setBlocking(true);
+            this.player2.setBlocking(false);
         }
 
         if (keyCode == KeyEvent.VK_K) {

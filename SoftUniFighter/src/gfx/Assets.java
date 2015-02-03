@@ -12,6 +12,8 @@ public class Assets {
     public static BufferedImage background;
     public static BufferedImage player1walk1, player1walk2;
     public static BufferedImage player1punch, player1kick;
+    public static BufferedImage nakovBlock, nakovRevBlock;
+    public static BufferedImage profBlock, profRevBlock;
 
     // public static BufferedImage player2walk1, player2walk2;
 
@@ -39,6 +41,9 @@ public class Assets {
         player1walk2 = ImageLoader.loadImage("images" + File.separator + "NakovWalk.png");
         player1punch = ImageLoader.loadImage("images" + File.separator + "NakovPunch.png");
         player1kick = ImageLoader.loadImage("images" + File.separator + "NakovKick.png");
-
+        nakovBlock = ImageLoader.loadImage("images" + File.separator + "NakovBlock.png");
+        nakovRevBlock = ImageLoader.loadImage("images" + File.separator + "MNakovBlock.png");
+        profBlock = ImageLoader.loadImage("images" + File.separator + "ProfBlock.png");
+        profRevBlock = ImageLoader.loadImage("images" + File.separator + "MProfBlock.png");
     }
 }
