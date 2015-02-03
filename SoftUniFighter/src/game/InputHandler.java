@@ -28,6 +28,7 @@ public class InputHandler implements KeyListener{
         int keyCode = e.getKeyCode();
 
         // Player 1 - Nakov
+
         if (keyCode == KeyEvent.VK_D) {
             //Go right
             this.player1.setMovingRight(true);

@@ -13,6 +13,7 @@ import java.awt.image.BufferStrategy;
 import java.io.File;
 
 // All of the game's logic goes here.
+
 public class Game implements Runnable {
     private static final int ActionScene = 8;
 
