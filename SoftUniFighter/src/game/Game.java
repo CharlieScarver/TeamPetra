@@ -3,6 +3,7 @@ package game;
 import display.*;
 import game.gameObjects.CharacterEnum;
 import game.gameObjects.Player;
+import game.gameObjects.Sound;
 import gfx.Assets;
 import gfx.ImageLoader;
 import state.State;
@@ -43,6 +44,7 @@ public class Game implements Runnable {
     public void init() {
         this.display = new Display(this.title, this.width, this.height);
         //this.display.addKeyListener(new InputHandler());
+        Sound.music();
 
         Assets.init();
         currentState = StateManager.getCurrentState();
