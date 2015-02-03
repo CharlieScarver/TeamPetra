@@ -54,9 +54,9 @@ public class Game implements Runnable {
                 "images" + File.separator + "NakovKick.png");
 
         player1.setReversePlayerStationary(ImageLoader.loadImage("images" + File.separator + "MNakovHeadDefaultFighter1PNG.png"));
-        player1.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MNakovKick.png"));
-        player1.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MNakovPunch.png"));
         player1.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MNakovWalk.png"));
+        player1.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MNakovPunch.png"));
+        player1.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MNakovKick.png"));
 
         player2 = new Player(590, 240, CharacterEnum.Prof,
                 "images" + File.separator + "ProfNormal.png",
@@ -65,9 +65,9 @@ public class Game implements Runnable {
                 "images" + File.separator + "ProfKick.png");
 
         player2.setReversePlayerStationary(ImageLoader.loadImage("images" + File.separator + "MProfNormal.png"));
-        player2.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MProfKick.png"));
-        player2.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MProfPunch.png"));
         player2.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MProfWalk.png"));
+        player2.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MProfPunch.png"));
+        player2.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MProfKick.png"));
 
         this.inputHandler = new InputHandler(this.display, player1, player2);
     }
@@ -121,8 +121,10 @@ public class Game implements Runnable {
     }
 // Can also be tick(), logic goes here.
     private void update() {
+
         player1.update();
         player2.update();
+
         if (this.player1.intersects(player2)) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
             if (this.player1.getKicking() == ActionScene) {
@@ -148,6 +150,7 @@ public class Game implements Runnable {
 
         player1.checkReverse(player2);
         player2.checkReverse(player1);
+
     }
 // All drawing goes here.
     private void render() {
@@ -161,25 +164,38 @@ public class Game implements Runnable {
         g = this.bs.getDrawGraphics();
 
         g.drawImage(Assets.background, 0, 0, null);
-        g.setColor(Color.red);
-        g.fillRect(20, 5, player1.getHealth(), 20);
-        g.fillRect(this.width - 120, 5, player2.getHealth(), 20);
-        //g.drawString(String.valueOf(player1.getHealth()), 20, 20);
-        //g.drawString(String.valueOf(player2.getHealth()), this.width - 50, 20);
-        //Draw here.
+
         player1.render(g);
         player2.render(g);
+
+        if (this.player1.getHealth() > 0 && this.player2.getHealth() > 0) {
+            g.setColor(Color.red);
+            g.fillRect(20, 5, this.player1.getHealth(), 20);
+            g.fillRect(this.width - 120, 5, player2.getHealth(), 20);
+        } else if (this.player1.getHealth() <= 0) {
+            drawWinner(this.player2);
+        } else if (this.player2.getHealth() <= 0) {
+            drawWinner(this.player1);
+        }
 
         this.bs.show();
         this.g.dispose();
     }
 
-    public int getWidth() {
-        return this.width;
-    }
+    private void drawWinner (Player winner) {
+        g.setColor(Color.white);
+        g.fillRect((width / 2) - 105, 235, 220, 20);
+        g.setColor(Color.black);
 
-    public int getHeight() {
-        return this.height;
+        if (winner.getIdentity().equals(CharacterEnum.Nakov)) {
+            g.drawString("Nakov won!", width / 2 - 30, 250);
+            g.drawImage(ImageLoader.loadImage("images" + File.separator + "NakovWin.png"), width / 2 - 75, 30, null);
+        } else {
+            g.drawString("The Professor won!", width / 2 - 50, 250);
+            g.drawImage(ImageLoader.loadImage("images" + File.separator + "ProfWin.png"), width / 2 - 75, 30, null);
+        }
+        this.isRunning = false;
+        // End Game
     }
 
 }

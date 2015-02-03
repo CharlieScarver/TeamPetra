@@ -9,8 +9,10 @@ import java.util.TimerTask;
 
 // All the player's data goes here.
 public class Player {
-    private static final int NakovXOffset = 45;
-    private static final int ProfXOffset = 100;
+    private static final int NakovXOffset = 70;
+    private static final int NakovReversedXOffset = 100;
+    private static final int ProfXOffset = 130;
+    private static final int ProfReversedXOffset = 50;
     private static final int YOffset = 40;
     private static final int WALK_ANIMATION_LENGTH = 13;
     private static final int PUNCH_ANIMATION_LENGTH = 10;
@@ -69,8 +71,8 @@ public class Player {
         this.walkState = 1;
         this.printWalkImg1 = false;
 
-        this.width = 300;
-        this.height = 450;
+        this.width = 250;
+        this.height = 420;
 
         this.boundingBox = new Rectangle(this.width, this.height);
 
@@ -101,11 +103,20 @@ public class Player {
     public void update() {
 
         if (this.identity.equals(CharacterEnum.Nakov)) {
-            this.boundingBox.setBounds(this.x + NakovXOffset, this.y + YOffset, this.width, this.height);
+            if (!this.isReversed) {
+                this.boundingBox.setBounds(this.x + NakovXOffset, this.y + YOffset, this.width, this.height);
+            } else {
+                this.boundingBox.setBounds(this.x + NakovReversedXOffset, this.y + YOffset, this.width, this.height);
+            }
         } else {
-            this.boundingBox.setBounds(this.x + ProfXOffset, this.y + YOffset, this.width, this.height);
+            if (!this.isReversed) {
+                this.boundingBox.setBounds(this.x + ProfXOffset, this.y + YOffset, this.width, this.height);
+            } else {
+                this.boundingBox.setBounds(this.x + ProfReversedXOffset, this.y + YOffset, this.width, this.height);
+            }
         }
 
+        // Moving the characters
         if(this.movingLeft) {
             this.x -= this.velocity;
         }
@@ -113,16 +124,22 @@ public class Player {
             this.x += this.velocity;
         }
 
+        // If a character punches or kicks he will move forward
         if ((this.punching > 0 || this.kicking > 0) &&
                 ((this.identity.equals(CharacterEnum.Nakov) && !this.isReversed) ||
                 (this.identity.equals(CharacterEnum.Prof)  && this.isReversed))) {
             this.x += this.velocity/4;
+            this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 40, this.boundingBox.height);
+
         } else if ((this.punching > 0 || this.kicking > 0) &&
                 ((this.identity.equals(CharacterEnum.Prof) && !this.isReversed) ||
                 (this.identity.equals(CharacterEnum.Nakov) && this.isReversed))) {
             this.x -= this.velocity/4;
+            this.boundingBox.setBounds(this.boundingBox.x - 40, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
+
         }
 
+        // Characters can't leave the border
         if (this.x < -120) {
             this.x = -120;
         } else if (this.x > 700) {
@@ -132,6 +149,7 @@ public class Player {
 
     public void render(Graphics g) {
         if (!(this.punching > 0) && !(this.kicking > 0)) {
+            // Walking animation
             if (this.movingLeft || this.movingRight) {
                 if (this.walkState % WALK_ANIMATION_LENGTH == 0) {
                     if (this.printWalkImg1) {
@@ -154,24 +172,25 @@ public class Player {
             }
 
         } else if (this.punching > 0 && this.kicking == 0) {
+            // Punching animation
             g.drawImage(this.playerCurrentPunch, this.x, this.y, null);
             this.punching++;
 
             if (this.punching > PUNCH_ANIMATION_LENGTH) {
                 this.punching = 0;
             }
-            this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
 
         } else if (this.kicking > 0 && this.punching == 0) {
+            // Kicking animation
             g.drawImage(this.playerCurrentKick, this.x, this.y, null);
             this.kicking++;
 
             if (this.kicking > KICK_ANIMATION_LENGTH) {
                 this.kicking = 0;
             }
-            this.boundingBox.setBounds(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width + 30, this.boundingBox.height);
 
         } else {
+            //Standing still
             g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
             this.walkState = 1;
         }
@@ -189,6 +208,7 @@ public class Player {
             }, 2000);
         }*/
 
+        // After-attack delay
         if (!this.isCanHit()) {
             if (isKeyReleased()) {
                 counter++;
@@ -200,16 +220,21 @@ public class Player {
             }
         }
 
-        if (this.identity.equals(CharacterEnum.Prof)) {
-            System.out.println(this.identity + " " + this.canHit + " " + this.keyReleased);
-        }
+/*      // Test draw of the bounding boxes
+        g.setColor(Color.red);
+        if (this.identity.equals(CharacterEnum.Nakov)) {
+            //System.out.println(this.identity + " " + this.canHit + " " + this.keyReleased);
+            g.drawRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
+        } else {
+            g.drawRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
+        }*/
+
     }
 
     public boolean intersects(Player other) {
         if (other.boundingBox.intersects(this.boundingBox) || this.boundingBox.intersects(other.boundingBox)) {
             return true;
         }
-
         return false;
     }
 
@@ -217,7 +242,7 @@ public class Player {
         if ((this.identity == CharacterEnum.Prof && !this.isReversed) || (this.identity == CharacterEnum.Nakov && this.isReversed)) {
             this.x += this.velocity * 5;
             this.setCanHit(false);
-        } else if ((this.identity == CharacterEnum.Nakov && this.isReversed) || (this.identity == CharacterEnum.Prof && this.isReversed)){
+        } else if ((this.identity == CharacterEnum.Nakov && !this.isReversed) || (this.identity == CharacterEnum.Prof && this.isReversed)){
             this.x -= this.velocity * 5;
             this.setCanHit(false);
         }
@@ -325,6 +350,10 @@ public class Player {
 
     public void setKicking(int kicking) {
         this.kicking = kicking;
+    }
+
+    public CharacterEnum getIdentity() {
+        return identity;
     }
 
     public boolean isCanHit() {
