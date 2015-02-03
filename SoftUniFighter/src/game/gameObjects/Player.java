@@ -4,8 +4,6 @@ import gfx.ImageLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Timer;
-import java.util.TimerTask;
 
 // All the player's data goes here.
 public class Player {
@@ -33,6 +31,7 @@ public class Player {
     private boolean movingLeft;
     private boolean movingRight;
 
+    private boolean isBlocking;
     private boolean canHit;
     private int punching;
     private int kicking;
@@ -82,6 +81,7 @@ public class Player {
         this.movingRight = false;
         this.movingUp = false;
         this.setCanHit(true);
+        this.setBlocking(false);
         this.punching = 0;
         this.kicking = 0;
 
@@ -405,4 +405,11 @@ public class Player {
     }
 
 
+    public boolean isBlocking() {
+        return isBlocking;
+    }
+
+    public void setBlocking(boolean isBlocking) {
+        this.isBlocking = isBlocking;
+    }
 }

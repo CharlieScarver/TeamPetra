@@ -128,9 +128,9 @@ public class Game implements Runnable {
         player1.update();
         player2.update();
 
-        if (this.player1.intersects(player2)) {
+        if (this.player1.intersects(player2) && !this.player2.isBlocking()) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
-            if (this.player1.getKicking() == ActionScene) {
+            if (this.player1.getKicking() == ActionScene ) {
                 this.player2.setHealth(this.player2.getHealth() - 10);
                 this.player2.pushBack();
 
@@ -140,7 +140,7 @@ public class Game implements Runnable {
             }
         }
 
-        if (this.player2.intersects(player1)) {
+        if (this.player2.intersects(player1) && !this.player1.isBlocking()) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
             if (this.player2.getKicking() == ActionScene) {
                 this.player1.setHealth(this.player1.getHealth() - 10);
@@ -172,9 +172,11 @@ public class Game implements Runnable {
         player2.render(g);
 
         if (this.player1.getHealth() > 0 && this.player2.getHealth() > 0) {
+            int player1HealthBar = (int)(this.player1.getHealth() * 1.5);
+            int player2HealthBar = (int)(this.player2.getHealth() * 1.5);
             g.setColor(Color.red);
-            g.fillRect(20, 5, this.player1.getHealth(), 20);
-            g.fillRect(this.width - 120, 5, player2.getHealth(), 20);
+            g.fillRect(20, 5, player1HealthBar, 20);
+            g.fillRect(this.width - player2HealthBar - 20, 5, player2HealthBar, 20);
         } else if (this.player1.getHealth() <= 0) {
             drawWinner(this.player2);
         } else if (this.player2.getHealth() <= 0) {
