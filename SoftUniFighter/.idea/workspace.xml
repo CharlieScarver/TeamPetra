@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f742c532-2dd0-465a-836e-169db244f859" name="Default" comment="Win condition and winner printing added; Push back works properly when reversed">
+    <list default="true" id="f742c532-2dd0-465a-836e-169db244f859" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SoftUniFighter/game/Game.class" afterPath="$PROJECT_DIR$/out/production/SoftUniFighter/game/Game.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SoftUniFighter/game/gameObjects/Player.class" afterPath="$PROJECT_DIR$/out/production/SoftUniFighter/game/gameObjects/Player.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/Game.java" afterPath="$PROJECT_DIR$/src/game/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/gameObjects/Player.java" afterPath="$PROJECT_DIR$/src/game/gameObjects/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SoftUniFighter.iws" />
@@ -627,7 +625,13 @@
       <option name="project" value="LOCAL" />
       <updated>1422891190496</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Win condition and winner printing added; Push back works properly when reversed">
+      <created>1422944527286</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1422944527286</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -677,7 +681,8 @@
     </option>
     <MESSAGE value="After-attack timer now works; FPS is now 240" />
     <MESSAGE value="After-attack delay is now applied when being hit; FPS is now 120" />
-    <option name="LAST_COMMIT_MESSAGE" value="After-attack delay is now applied when being hit; FPS is now 120" />
+    <MESSAGE value="Win condition and winner printing added; Push back works properly when reversed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Win condition and winner printing added; Push back works properly when reversed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
