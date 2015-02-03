@@ -1,5 +1,7 @@
 package display;
 
+import game.gameObjects.Sound;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -34,7 +36,6 @@ public class Display extends Canvas {
         this.frame.setLocationRelativeTo(null);
         this.frame.setFocusable(true);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
         this.canvas = new Canvas();
         this.canvas.setSize(new Dimension(this.width, this.height));
