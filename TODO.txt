@@ -4,7 +4,7 @@ TODO:
 Field		V
 Characters		V
 Characters can jump		V
-Characters can hit		only visually
-Characters get hurt		
-Characters die
+Characters can hit		V
+Characters get hurt		V
+Characters die		V
 
