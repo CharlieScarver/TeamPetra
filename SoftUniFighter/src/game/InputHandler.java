@@ -42,6 +42,8 @@ public class InputHandler implements KeyListener{
 
             if (keyCode == KeyEvent.VK_B) {
                 this.player1.setBlocking(true);
+                this.player1.setMovingLeft(false);
+                this.player1.setMovingRight(false);
             }
 
             if (keyCode == KeyEvent.VK_G) {
@@ -81,6 +83,8 @@ public class InputHandler implements KeyListener{
 
             if (keyCode == KeyEvent.VK_P) {
                 this.player2.setBlocking(true);
+                this.player2.setMovingLeft(false);
+                this.player2.setMovingRight(false);
             }
 
             if (keyCode == KeyEvent.VK_K) {

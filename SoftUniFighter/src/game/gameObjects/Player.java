@@ -26,7 +26,6 @@ public class Player {
     private int walkState;
     private boolean printWalkImg1;
 
-    private boolean movingUp;
     private boolean movingDown;
     private boolean movingLeft;
     private boolean movingRight;
@@ -82,7 +81,6 @@ public class Player {
         this.movingDown = false;
         this.movingLeft = false;
         this.movingRight = false;
-        this.movingUp = false;
         this.setCanHit(true);
         this.setBlocking(false);
         this.punching = 0;
@@ -284,20 +282,12 @@ public class Player {
         }
     }
 
-    public Rectangle getBoundingBox() {
-        return this.boundingBox;
-    }
-
     public int getX() {
         return x;
     }
 
     public void setX(int x) {
         this.x = x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public void setY(int y) {
@@ -310,14 +300,6 @@ public class Player {
 
     public void setHealth(int health) {
         this.health = health;
-    }
-
-    public boolean isMovingUp() {
-        return movingUp;
-    }
-
-    public void setMovingUp(boolean movingUp) {
-        this.movingUp = movingUp;
     }
 
     public boolean isMovingDown() {
