@@ -5,8 +5,6 @@ import java.io.File;
 import java.util.Random;
 
 public class Assets {
-    private final int width = 300;
-    private final int height = 200;
 
     public static BufferedImage bg1, bg2, bg3;
     public static BufferedImage background;

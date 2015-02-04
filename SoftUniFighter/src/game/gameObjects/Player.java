@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 
 // All the player's data goes here.
 public class Player {
+
     private static final int NakovXOffset = 70;
     private static final int NakovReversedXOffset = 100;
     private static final int ProfXOffset = 130;
@@ -131,6 +132,13 @@ public class Player {
             this.x = -120;
         } else if (this.x > 700) {
             this.x = 700;
+        }
+
+        if (this.identity.equals(CharacterEnum.Nakov)) {
+            System.out.println(isMovingRight());
+            System.out.println(isBlocking());
+            System.out.println(getPunching());
+            System.out.println("----------");
         }
     }
 

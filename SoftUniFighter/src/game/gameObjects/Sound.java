@@ -1,9 +1,7 @@
 package game.gameObjects;
+
 import sun.audio.*;
 import java.io.*;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Sound {
 
@@ -12,11 +10,11 @@ public class Sound {
         AudioStream BGM;
         ContinuousAudioDataStream loop = null;
         try {
-            BGM = new AudioStream(new FileInputStream("src/Music.wav"));
+            BGM = new AudioStream(new FileInputStream("src" + File.separator + "Music.wav"));
             AudioPlayer.player.start(BGM);
         } catch (IOException e) {
             try {
-                BGM = new AudioStream(new FileInputStream("SoftUniFighter/src/Music.wav"));
+                BGM = new AudioStream(new FileInputStream("SoftUniFighter" + File.separator + "src" + File.separator + "Music.wav"));
                 AudioPlayer.player.start(BGM);
             } catch (IOException e1) {
                 e1.printStackTrace();

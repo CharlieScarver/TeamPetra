@@ -43,6 +43,10 @@ public class InputHandler implements KeyListener{
                 this.player1.setBlocking(true);
                 this.player1.setMovingLeft(false);
                 this.player1.setMovingRight(false);
+
+                this.player1.setPunching(0);
+                this.player1.setKicking(0);
+                this.player1.setKeyReleased(false);
             }
 
             if (keyCode == KeyEvent.VK_F) {
@@ -84,6 +88,10 @@ public class InputHandler implements KeyListener{
                 this.player2.setBlocking(true);
                 this.player2.setMovingLeft(false);
                 this.player2.setMovingRight(false);
+
+                this.player2.setPunching(0);
+                this.player2.setKicking(0);
+                this.player2.setKeyReleased(false);
             }
 
             if (keyCode == KeyEvent.VK_K) {
@@ -129,6 +137,7 @@ public class InputHandler implements KeyListener{
 
         if (keyCode == KeyEvent.VK_W) {
             this.player1.setBlocking(false);
+            this.player1.setKeyReleased(true);
         }
 
         if (keyCode == KeyEvent.VK_F) {
@@ -151,6 +160,7 @@ public class InputHandler implements KeyListener{
 
         if (keyCode == KeyEvent.VK_UP) {
             this.player2.setBlocking(false);
+            this.player2.setKeyReleased(true);
         }
 
         if (keyCode == KeyEvent.VK_K) {
