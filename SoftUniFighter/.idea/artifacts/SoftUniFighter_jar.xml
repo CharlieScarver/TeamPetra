@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SoftUniFighter:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SoftUniFighter_jar</output-path>
+    <root id="archive" name="SoftUniFighter.jar">
+      <element id="module-output" name="SoftUniFighter" />
+    </root>
+  </artifact>
+</component>

@@ -187,19 +187,28 @@ public class Game implements Runnable {
         this.player2.render(g);
 
         if (this.player1.getHealth() > 0 && this.player2.getHealth() > 0) {
-            int player1HealthBar = (int)(this.player1.getHealth() * 1.5);
-            int player2HealthBar = (int)(this.player2.getHealth() * 1.5);
-            this.g.setColor(Color.red);
-            this.g.fillRect(20, 5, player1HealthBar, 20);
-            this.g.fillRect(this.width - player2HealthBar - 20, 5, player2HealthBar, 20);
+            this.drawHealth(this.player1);
+            this.drawHealth(this.player2);
         } else if (this.player1.getHealth() <= 0) {
+            this.drawHealth(this.player2);
             drawWinner(this.player2);
         } else if (this.player2.getHealth() <= 0) {
+            this.drawHealth(this.player1);
             drawWinner(this.player1);
         }
 
         this.bs.show();
         this.g.dispose();
+    }
+
+    private void drawHealth (Player player) {
+        int playerHealthBar = (int)(player.getHealth() * 1.5);
+        this.g.setColor(Color.red);
+        if (player.getIdentity().equals(CharacterEnum.Nakov)) {
+            this.g.fillRect(20, 5, playerHealthBar, 20);
+        } else {
+            this.g.fillRect(this.width - playerHealthBar - 20, 5, playerHealthBar, 20);
+        }
     }
 
     private void drawWinner (Player winner) {
