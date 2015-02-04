@@ -27,6 +27,8 @@ public class Assets {
     public static BufferedImage profRevPunch, profRevKick;
     public static BufferedImage profRevBlock;
 
+    public static BufferedImage nakovWin, profWin;
+
     public static void init() {
 
         bg1 = ImageLoader.loadImage("images" + File.separator + "Arena1PNG.png");
@@ -75,5 +77,9 @@ public class Assets {
         profRevPunch = ImageLoader.loadImage("images" + File.separator + "MProfPunch.png");
         profRevKick = ImageLoader.loadImage("images" + File.separator + "MProfKick.png");
         profRevBlock = ImageLoader.loadImage("images" + File.separator + "MProfBlock.png");
+
+        // Winning images
+        nakovWin = ImageLoader.loadImage("images" + File.separator + "NakovWin.png");
+        profWin = ImageLoader.loadImage("images" + File.separator + "ProfWin.png");
     }
 }

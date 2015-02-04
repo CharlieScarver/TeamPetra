@@ -138,8 +138,8 @@ public class Player {
         if (this.isBlocking()) {
             g.drawImage(this.playerCurrentBlock, this.x, this.y, null);
         } else {
-            if (!(this.getPunching() > 0) && !(this.getKicking() > 0)) {
-                // Walking animation
+            // Walking animation
+            if ((this.getPunching() == 0) && (this.getKicking() == 0))
                 if (this.isMovingLeft() || this.isMovingRight()) {
                     if (this.walkState % WALK_ANIMATION_LENGTH == 0) {
                         if (this.printWalkImg1) {
@@ -160,8 +160,7 @@ public class Player {
                     g.drawImage(this.playerCurrentStationary, this.x, this.y, null);
                     this.walkState = 1;
                 }
-
-            } else if (this.getPunching() > 0 && this.getKicking() == 0) {
+            else if (this.getPunching() > 0 && this.getKicking() == 0) {
                 // Punching animation
                 g.drawImage(this.playerCurrentPunch, this.x, this.y, null);
                 this.punching++;

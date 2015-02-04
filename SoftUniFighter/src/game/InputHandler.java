@@ -19,7 +19,6 @@ public class InputHandler implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        int keyCode = e.getKeyCode();
 
     }
 

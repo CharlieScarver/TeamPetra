@@ -1,8 +1,5 @@
 package game;
 
-import java.io.File;
-import java.util.Locale;
-
 // game is launched here, must be as small as possible - no logic here.
 public class Launcher {
     public static  void main(String[] args) {

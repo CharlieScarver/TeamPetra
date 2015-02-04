@@ -1,7 +1,5 @@
 package display;
 
-import game.gameObjects.Sound;
-
 import javax.swing.*;
 import java.awt.*;
 

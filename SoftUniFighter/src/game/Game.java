@@ -5,13 +5,9 @@ import game.gameObjects.CharacterEnum;
 import game.gameObjects.Player;
 import game.gameObjects.Sound;
 import gfx.Assets;
-import gfx.ImageLoader;
-import state.State;
-import state.StateManager;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.io.File;
 
 // All of the game's logic goes here.
 
@@ -29,7 +25,6 @@ public class Game implements Runnable {
     private InputHandler inputHandler;
     private BufferStrategy bs;
     private Graphics g;
-    private State currentState;
 
     private Player player1;
     private Player player2;
@@ -47,7 +42,6 @@ public class Game implements Runnable {
         Sound.music();
 
         Assets.init();
-        this.currentState = StateManager.getCurrentState();
 
         // Initialize players here.
 
@@ -218,10 +212,10 @@ public class Game implements Runnable {
 
         if (winner.getIdentity().equals(CharacterEnum.Nakov)) {
             this.g.drawString("Nakov won!", width / 2 - 30, 250);
-            this.g.drawImage(ImageLoader.loadImage("images" + File.separator + "NakovWin.png"), width / 2 - 75, 30, null);
+            this.g.drawImage(Assets.nakovWin, width / 2 - 75, 30, null);
         } else {
             this.g.drawString("The Professor won!", width / 2 - 50, 250);
-            this.g.drawImage(ImageLoader.loadImage("images" + File.separator + "ProfWin.png"), width / 2 - 75, 30, null);
+            this.g.drawImage(Assets.profWin, width / 2 - 75, 30, null);
         }
         this.isRunning = false;
         // End Game
