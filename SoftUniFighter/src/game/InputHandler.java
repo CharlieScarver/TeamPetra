@@ -40,13 +40,13 @@ public class InputHandler implements KeyListener{
                 this.player1.setMovingRight(false);
             }
 
-            if (keyCode == KeyEvent.VK_B) {
+            if (keyCode == KeyEvent.VK_W) {
                 this.player1.setBlocking(true);
                 this.player1.setMovingLeft(false);
                 this.player1.setMovingRight(false);
             }
 
-            if (keyCode == KeyEvent.VK_G) {
+            if (keyCode == KeyEvent.VK_F) {
                 if (this.player1.getKicking() == 0 && this.player1.isCanHit() && this.player1.isKeyReleased()) {
                     // Punch
                     this.player1.setPunching(1);
@@ -55,7 +55,7 @@ public class InputHandler implements KeyListener{
                     // Can't hit again for now
                     this.player1.setCanHit(false);
                 }
-            } else if (keyCode == KeyEvent.VK_H) {
+            } else if (keyCode == KeyEvent.VK_G) {
                 if (this.player1.getPunching() == 0 && this.player1.isCanHit() && this.player1.isKeyReleased()) {
                     // Kick
                     this.player1.setKicking(1);
@@ -81,7 +81,7 @@ public class InputHandler implements KeyListener{
                 this.player2.setMovingRight(false);
             }
 
-            if (keyCode == KeyEvent.VK_P) {
+            if (keyCode == KeyEvent.VK_UP) {
                 this.player2.setBlocking(true);
                 this.player2.setMovingLeft(false);
                 this.player2.setMovingRight(false);
@@ -128,14 +128,14 @@ public class InputHandler implements KeyListener{
             this.player1.setMovingLeft(false);
         }
 
-        if (keyCode == KeyEvent.VK_B) {
+        if (keyCode == KeyEvent.VK_W) {
             this.player1.setBlocking(false);
         }
 
-        if (keyCode == KeyEvent.VK_G) {
+        if (keyCode == KeyEvent.VK_F) {
             // Punch key was released
             this.player1.setKeyReleased(true);
-        } else if (keyCode == KeyEvent.VK_H) {
+        } else if (keyCode == KeyEvent.VK_G) {
             // Kick key was released
             this.player1.setKeyReleased(true);
         }
@@ -150,7 +150,7 @@ public class InputHandler implements KeyListener{
             this.player2.setMovingLeft(false);
         }
 
-        if (keyCode == KeyEvent.VK_P) {
+        if (keyCode == KeyEvent.VK_UP) {
             this.player2.setBlocking(false);
         }
 

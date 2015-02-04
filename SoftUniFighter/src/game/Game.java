@@ -31,8 +31,8 @@ public class Game implements Runnable {
     private Graphics g;
     private State currentState;
 
-    public static Player player1;
-    public static Player player2;
+    private Player player1;
+    private Player player2;
 
     public Game(String title, int width, int height) {
         this.title = title;
@@ -47,34 +47,39 @@ public class Game implements Runnable {
         Sound.music();
 
         Assets.init();
-        currentState = StateManager.getCurrentState();
+        this.currentState = StateManager.getCurrentState();
 
         // Initialize players here.
-        player1 = new Player(0, 240, CharacterEnum.Nakov,
-                "images" + File.separator + "NakovHeadDefaultFighter1PNG.png",
-                "images" + File.separator + "NakovWalk.png",
-                "images" + File.separator + "NakovPunch.png",
-                "images" + File.separator + "NakovKick.png");
 
-        player1.setReversePlayerStationary(ImageLoader.loadImage("images" + File.separator + "MNakovHeadDefaultFighter1PNG.png"));
-        player1.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MNakovWalk.png"));
-        player1.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MNakovPunch.png"));
-        player1.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MNakovKick.png"));
-        player1.setPlayerBlock(Assets.nakovBlock);
-        player1.setPlayerRevBlock(Assets.nakovRevBlock);
+        // Nakov
+        this.player1 = new Player(0, 240, CharacterEnum.Nakov);
 
-        player2 = new Player(590, 240, CharacterEnum.Prof,
-                "images" + File.separator + "ProfNormal.png",
-                "images" + File.separator + "ProfWalk.png",
-                "images" + File.separator + "ProfPunch.png",
-                "images" + File.separator + "ProfKick.png");
+        this.player1.setPlayerStationary(Assets.nakovStationary);
+        this.player1.setPlayerWalk(Assets.nakovWalk);
+        this.player1.setPlayerPunch(Assets.nakovPunch);
+        this.player1.setPlayerKick(Assets.nakovKick);
+        this.player1.setPlayerBlock(Assets.nakovBlock);
 
-        player2.setReversePlayerStationary(ImageLoader.loadImage("images" + File.separator + "MProfNormal.png"));
-        player2.setReversePlayerWalk(ImageLoader.loadImage("images" + File.separator + "MProfWalk.png"));
-        player2.setReversePlayerPunch(ImageLoader.loadImage("images" + File.separator + "MProfPunch.png"));
-        player2.setReversePlayerKick(ImageLoader.loadImage("images" + File.separator + "MProfKick.png"));
-        player2.setPlayerBlock(Assets.profBlock);
-        player2.setPlayerRevBlock(Assets.profRevBlock);
+        this.player1.setReversePlayerStationary(Assets.nakovRevStationary);
+        this.player1.setReversePlayerWalk(Assets.nakovRevWalk);
+        this.player1.setReversePlayerPunch(Assets.nakovRevPunch);
+        this.player1.setReversePlayerKick(Assets.nakovRevKick);
+        this.player1.setReversePlayerBlock(Assets.nakovRevBlock);
+
+        // Prof
+        this.player2 = new Player(590, 240, CharacterEnum.Prof);
+
+        this.player2.setPlayerStationary(Assets.profStationary);
+        this.player2.setPlayerWalk(Assets.profWalk);
+        this.player2.setPlayerPunch(Assets.profPunch);
+        this.player2.setPlayerKick(Assets.profKick);
+        this.player2.setPlayerBlock(Assets.profBlock);
+
+        this.player2.setReversePlayerStationary(Assets.profRevStationary);
+        this.player2.setReversePlayerWalk(Assets.profRevWalk);
+        this.player2.setReversePlayerPunch(Assets.profRevPunch);
+        this.player2.setReversePlayerKick(Assets.profRevKick);
+        this.player2.setReversePlayerBlock(Assets.profRevBlock);
 
         this.inputHandler = new InputHandler(this.display, player1, player2);
     }
@@ -126,61 +131,67 @@ public class Game implements Runnable {
 
         this.stop();
     }
-// Can also be tick(), logic goes here.
+
+    // Can also be tick(), logic goes here.
     private void update() {
 
-        player1.update();
-        player2.update();
+        this.player1.update();
+        this.player2.update();
 
         if (this.player1.intersects(player2) && !this.player2.isBlocking()) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
             if (this.player1.getKicking() == ActionScene ) {
-                this.player2.setHealth(this.player2.getHealth() - 10);
-                this.player2.pushBack();
+                this.player2.getHit(10);
 
             } else if (this.player1.getPunching() == ActionScene) {
-                this.player2.setHealth(this.player2.getHealth() - 5);
-                this.player2.pushBack();
+                this.player2.getHit(5);
+            }
+        } else if (this.player1.intersects(player2) && this.player2.isBlocking()) {
+            if (this.player1.getPunching() == ActionScene || this.player1.getKicking() == ActionScene) {
+                this.player2.getHit(2);
             }
         }
 
         if (this.player2.intersects(player1) && !this.player1.isBlocking()) {
             //intersection logic - is in attacking stance, what happens, reduce health, etc.
             if (this.player2.getKicking() == ActionScene) {
-                this.player1.setHealth(this.player1.getHealth() - 10);
-                this.player1.pushBack();
+                this.player1.getHit(10);
             } else if (this.player2.getPunching() == ActionScene) {
-                this.player1.setHealth(this.player1.getHealth() - 5);
-                this.player1.pushBack();
+                this.player1.getHit(5);
+            }
+        } else if (this.player2.intersects(player1) && this.player1.isBlocking()) {
+            if (this.player2.getPunching() == ActionScene || this.player2.getKicking() == ActionScene) {
+                this.player1.getHit(2);
             }
         }
 
-        player1.checkReverse(player2);
-        player2.checkReverse(player1);
+        this.player1.checkReverse(player2);
+        this.player2.checkReverse(player1);
 
     }
-// All drawing goes here.
+
+    // All drawing goes here.
     private void render() {
         this.bs = this.display.getCanvas().getBufferStrategy();
 
         if (this.bs == null) {
-            display.getCanvas().createBufferStrategy(2);
+            this.display.getCanvas().createBufferStrategy(2);
             return;
         }
 
-        g = this.bs.getDrawGraphics();
+        this.g = this.bs.getDrawGraphics();
 
-        g.drawImage(Assets.background, 0, 0, null);
+        this.g.drawImage(Assets.background, 0, 0, null);
 
-        player1.render(g);
-        player2.render(g);
+        this.player1.render(g);
+        this.player2.render(g);
 
         if (this.player1.getHealth() > 0 && this.player2.getHealth() > 0) {
             int player1HealthBar = (int)(this.player1.getHealth() * 1.5);
             int player2HealthBar = (int)(this.player2.getHealth() * 1.5);
-            g.setColor(Color.red);
-            g.fillRect(20, 5, player1HealthBar, 20);
-            g.fillRect(this.width - player2HealthBar - 20, 5, player2HealthBar, 20);
+            this.g.setColor(Color.red);
+            this.g.fillRect(20, 5, player1HealthBar, 20);
+            this.g.fillRect(this.width - player2HealthBar - 20, 5, player2HealthBar, 20);
         } else if (this.player1.getHealth() <= 0) {
             drawWinner(this.player2);
         } else if (this.player2.getHealth() <= 0) {
@@ -192,16 +203,16 @@ public class Game implements Runnable {
     }
 
     private void drawWinner (Player winner) {
-        g.setColor(Color.white);
-        g.fillRect((width / 2) - 105, 235, 220, 20);
-        g.setColor(Color.black);
+        this.g.setColor(Color.white);
+        this.g.fillRect((width / 2) - 105, 235, 220, 20);
+        this.g.setColor(Color.black);
 
         if (winner.getIdentity().equals(CharacterEnum.Nakov)) {
-            g.drawString("Nakov won!", width / 2 - 30, 250);
-            g.drawImage(ImageLoader.loadImage("images" + File.separator + "NakovWin.png"), width / 2 - 75, 30, null);
+            this.g.drawString("Nakov won!", width / 2 - 30, 250);
+            this.g.drawImage(ImageLoader.loadImage("images" + File.separator + "NakovWin.png"), width / 2 - 75, 30, null);
         } else {
-            g.drawString("The Professor won!", width / 2 - 50, 250);
-            g.drawImage(ImageLoader.loadImage("images" + File.separator + "ProfWin.png"), width / 2 - 75, 30, null);
+            this.g.drawString("The Professor won!", width / 2 - 50, 250);
+            this.g.drawImage(ImageLoader.loadImage("images" + File.separator + "ProfWin.png"), width / 2 - 75, 30, null);
         }
         this.isRunning = false;
         // End Game

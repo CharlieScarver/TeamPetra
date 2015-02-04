@@ -1,12 +1,14 @@
 Nakov:
 Left - A
 Right - D
-Punch - G
-Kick - H
+Block - W
+Punch - F
+Kick - G
 
 Prof:
 Left - Left Arrow
 Right - Right Arrow
+Block - Up Arrow
 Punch - K
 Kick - L
 
