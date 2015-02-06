@@ -7,13 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f742c532-2dd0-465a-836e-169db244f859" name="Default" comment="Sliding while blocking fixed">
-      <change type="DELETED" beforePath="D:\Programming\GitHub\TeamPetra\SoftUniFighter\images\ProffHeadDefaultFighter2MirroredPNG.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Programming\GitHub\TeamPetra\SoftUniFighter\images\ProffKick.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Programming\GitHub\TeamPetra\SoftUniFighter\images\ProffPunch.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\Programming\GitHub\TeamPetra\SoftUniFighter\images\ProffWalk.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gfx/Assets.java" afterPath="$PROJECT_DIR$/src/gfx/Assets.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/gameObjects/CharacterEnum.java" afterPath="$PROJECT_DIR$/src/game/gameObjects/CharacterEnum.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/InputHandler.java" afterPath="$PROJECT_DIR$/src/game/InputHandler.java" />
+      <change type="DELETED" beforePath="D:\Admin\Programming\GitHub\TeamPetra\SoftUniFighter\out\production\SoftUniFighter\Music.wav" afterPath="" />
+      <change type="DELETED" beforePath="D:\Admin\Programming\GitHub\TeamPetra\SoftUniFighter\src\Music.wav" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SoftUniFighter/game/gameObjects/Sound.class" afterPath="$PROJECT_DIR$/out/production/SoftUniFighter/game/gameObjects/Sound.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/gameObjects/Player.java" afterPath="$PROJECT_DIR$/src/game/gameObjects/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/game/gameObjects/Sound.java" afterPath="$PROJECT_DIR$/src/game/gameObjects/Sound.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -46,28 +42,42 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="3791">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="3825">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game/gameObjects/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="5933">
-              <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.20040485" vertical-offset="1805" max-vertical-offset="5729">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+              <folding>
+                <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+                <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+                <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InputHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/InputHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2352" max-vertical-offset="3009">
+              <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InputHandler.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/game/InputHandler.java">
+      <file leaf-file-name="Sound.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/gameObjects/Sound.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6551724" vertical-offset="2312" max-vertical-offset="3009">
-              <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,18 +96,18 @@
         <option value="$PROJECT_DIR$/src/display/Display.java" />
         <option value="$PROJECT_DIR$/src/game/Game.java" />
         <option value="$PROJECT_DIR$/src/gfx/Assets.java" />
-        <option value="$PROJECT_DIR$/src/game/gameObjects/Sound.java" />
         <option value="$PROJECT_DIR$/src/game/gameObjects/CharacterEnum.java" />
-        <option value="$PROJECT_DIR$/src/game/gameObjects/Player.java" />
         <option value="$PROJECT_DIR$/src/game/InputHandler.java" />
+        <option value="$PROJECT_DIR$/src/game/gameObjects/Sound.java" />
+        <option value="$PROJECT_DIR$/src/game/gameObjects/Player.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="776" />
+    <option name="x" value="189" />
+    <option name="y" value="81" />
+    <option name="width" value="1346" />
+    <option name="height" value="793" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -139,7 +149,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -190,8 +199,49 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SoftUniFighter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SoftUniFighter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SoftUniFighter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SoftUniFighter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gameObjects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -457,7 +507,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
+    <frame x="189" y="81" width="1346" height="793" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -470,10 +520,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22005989" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2189781" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21804512" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -509,7 +559,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -518,6 +568,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/game/InputHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2856">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/InputHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="2856">
@@ -554,7 +612,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4386" max-vertical-offset="5712">
           <caret line="259" column="62" selection-start-line="259" selection-start-column="62" selection-end-line="259" selection-end-column="62" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -586,7 +648,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4386" max-vertical-offset="5712">
           <caret line="259" column="62" selection-start-line="259" selection-start-column="62" selection-end-line="259" selection-end-column="62" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -610,7 +676,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4505" max-vertical-offset="6290">
           <caret line="268" column="0" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -634,7 +704,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4424" max-vertical-offset="6154">
           <caret line="268" column="0" selection-start-line="268" selection-start-column="0" selection-end-line="268" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -658,7 +732,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4386">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -682,7 +760,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4386">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -706,7 +788,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2704" max-vertical-offset="4369">
           <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -730,7 +816,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4913">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -761,7 +851,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="2635">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -800,7 +894,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -842,7 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10044313" vertical-offset="0" max-vertical-offset="677">
           <caret line="5" column="71" selection-start-line="5" selection-start-column="71" selection-end-line="5" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -850,14 +947,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1328125" vertical-offset="0" max-vertical-offset="1479">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/gameObjects/Sound.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.027113238" vertical-offset="0" max-vertical-offset="627">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -870,35 +959,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gfx/ImageLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0796875" vertical-offset="0" max-vertical-offset="640">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="3791">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="3825">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/gameObjects/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/gfx/ImageLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="5933">
-          <caret line="140" column="45" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.13412228" vertical-offset="0" max-vertical-offset="507">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/InputHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6551724" vertical-offset="2312" max-vertical-offset="3009">
-          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2352" max-vertical-offset="3009">
+          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/gameObjects/Sound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/gameObjects/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20040485" vertical-offset="1805" max-vertical-offset="5729">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding>
+            <element signature="method#setReversePlayerStationary#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerPunch#0;class#Player#0" expanded="false" />
+            <element signature="method#setReversePlayerBlock#0;class#Player#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

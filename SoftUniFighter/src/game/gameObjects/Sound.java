@@ -10,7 +10,7 @@ public class Sound {
         AudioStream BGM;
         ContinuousAudioDataStream loop = null;
         try {
-            BGM = new AudioStream(new FileInputStream("src" + File.separator + "Music.wav"));
+            BGM = new AudioStream(new FileInputStream("music" + File.separator + "Music.wav"));
             AudioPlayer.player.start(BGM);
         } catch (IOException e) {
             try {

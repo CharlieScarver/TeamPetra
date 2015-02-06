@@ -134,12 +134,6 @@ public class Player {
             this.x = 700;
         }
 
-        if (this.identity.equals(CharacterEnum.Nakov)) {
-            System.out.println(isMovingRight());
-            System.out.println(isBlocking());
-            System.out.println(getPunching());
-            System.out.println("----------");
-        }
     }
 
     public void render(Graphics g) {
